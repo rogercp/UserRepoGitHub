@@ -20,7 +20,6 @@ function App() {
 
 useEffect(()=>{
 
-
 gsap.to(header.current, {color:"#8c0",duration:2})
 
 
@@ -29,12 +28,12 @@ gsap.to(header.current, {color:"#8c0",duration:2})
 
 
   return (
-    <div className="App">
+    <div className="App" style={{display:"flex",flexDirection:"column", alignItems:"center"}}>
 
     <h1 ref={header}>
       HEllo all 
     </h1>
-    <Merge/>
+    <Insertion/>
    
     </div>
   );
