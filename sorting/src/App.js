@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
 
+import Bubble from './components/Bubble';
+import Insertion from './components/Insertion';
+import Merge from './components/Merge';
+import Quick from './components/Quick';
+import Selection from './components/Selection';
+
+// import './GSAPComponent.css';
+import {gsap} from 'gsap';
+
+
+
+
 function App() {
+
+  const header = React.createRef();
+
+
+useEffect(()=>{
+
+
+gsap.to(header.current, {color:"#8c0",duration:2})
+
+
+},[header])
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <h1 ref={header}>
+      HEllo all 
+    </h1>
+    <Merge/>
+   
     </div>
   );
 }
