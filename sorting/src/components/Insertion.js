@@ -51,17 +51,23 @@ const addToRefs = (el) =>
 
 const onAnimate = () => {
 
+    const rect = revealsRef.current[0].getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left)
+
+    const rect2 = revealsRef.current[10].getBoundingClientRect();
+    console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
+
+
     let tl = gsap.timeline(); 
 
     tl.to(revealsRef.current[0], 0.9, {y: 100,delay: 0.5})
-    .to(revealsRef.current[6], 0.9, {y: 100,delay: 0.5})
+    .to(revealsRef.current[10], 0.9, {y: 100,delay: 0.5})
 
-
-    .to(revealsRef.current[0], 0.9, {x: 400,delay: 0.5})
-    .to(revealsRef.current[6], 0.9, {x: -400,delay: 0.5})
+    .to(revealsRef.current[0], 0.9, {x:  (rect2.right-rect.right),delay: 0.5})
+    .to(revealsRef.current[10], 0.9, {x: -(rect2.right-rect.right) ,delay: 0.5})
     
-    .to(revealsRef.current[0], 0.9, {y: -50,delay: 0.5})
-    .to(revealsRef.current[6], 0.9, {y: -50,delay: 0.5});
+    .to(revealsRef.current[0], 0.9, {y: -(rect2.bottom-rect2.top+ revealsRef.current[10]),delay: 0.5})
+    .to(revealsRef.current[10], 0.9, {y: -(rect.bottom-rect.top +revealsRef.current[0]),delay: 0.5});
 
 
 }
