@@ -24,8 +24,6 @@ function Insertion() {
 
     const [values, setValues] = useState(randomListOfNums(20))
 
-    // const headerRef = React.useRef(null);
-
     const revealsRef = React.useRef([]);
 
     revealsRef.current = [];
@@ -33,12 +31,7 @@ function Insertion() {
     const useEffect=(()=>
     {
 
-        gsap.from(revealsRef.current,{
-                duration:1,
-                autoAlpha:0,
-                ease:'none',
-                delay:1
-        });
+    
 
 
     },[]);
@@ -58,19 +51,28 @@ const addToRefs = (el) =>
 
 const onAnimate = () => {
 
+    let tl = gsap.timeline(); 
 
-    gsap.to(revealsRef.current,{
-        color:"#8c0",duration:2
+    tl.to(revealsRef.current[0], 0.9, {y: 100,delay: 0.5})
+    .to(revealsRef.current[6], 0.9, {y: 100,delay: 0.5})
 
 
-})
+    .to(revealsRef.current[0], 0.9, {x: 400,delay: 0.5})
+    .to(revealsRef.current[6], 0.9, {x: -400,delay: 0.5})
+    
+    .to(revealsRef.current[0], 0.9, {y: -50,delay: 0.5})
+    .to(revealsRef.current[6], 0.9, {y: -50,delay: 0.5});
+
+
 }
+
+
 
    
   return (
     <div className="insertion" >
 
-           <p >insertion</p>
+           <p>insertion</p>
 
         <section style={{display:"flex", flexDirection:"row",width:"1200px"}}>
 
