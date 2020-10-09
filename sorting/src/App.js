@@ -20,7 +20,7 @@ function App() {
 
 useEffect(()=>{
 
-gsap.to(header.current, {color:"#8c0",duration:2})
+gsap.to(header.current, {color:"ivory",duration:2})
 
 
 },[header])

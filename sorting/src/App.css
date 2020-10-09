@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+.blocksNumber{
+
+  display: flex;
+
+  flex-direction: column;
+
+
+  }
+
+  .blocks{
+
+    display: flex;
+  
+    flex-direction: column;
+  
+  
+    }
+
+
+@media only screen and (max-width: 700px)
+{
+
+  .blocksNumberWeb{
+
+  display: none !important;
+
+  }
+
+
+}
+
+@media only screen and (min-width: 700px)
+{
+
+  .blocksNumberMobile{
+
+  display: none !important;
+
+  }
+
+
+}
