@@ -60,8 +60,9 @@ const onAnimate = () => {
 
     let tl = gsap.timeline(); 
 
-    tl.to(revealsRef.current[0], 0.9, {y: 100,delay: 0.5})
-    .to(revealsRef.current[10], 0.9, {y: 100,delay: 0.5})
+
+    tl.to(revealsRef.current[0], 0.9, {y: 400,delay: 0.5})
+    .to(revealsRef.current[10], 0.9, {y: 400,delay: 0.5})
 
     .to(revealsRef.current[0], 0.9, {x:  (rect2.right-rect.right),delay: 0.5})
     .to(revealsRef.current[10], 0.9, {x: -(rect2.right-rect.right) ,delay: 0.5})
@@ -88,7 +89,7 @@ const onAnimate = () => {
                 <div 
                 key={num}
                 ref={addToRefs}
-                style={{height:`${num}px`, backgroundColor:"red",margin:"5px",width:"80%"}}
+                style={{height:`${num*10}px`, backgroundColor:"red",margin:"5px",width:"80%"}}
                 onClick={onAnimate}
                 >
                     

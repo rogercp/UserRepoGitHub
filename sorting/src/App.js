@@ -31,7 +31,7 @@ gsap.to(header.current, {color:"#8c0",duration:2})
     <div className="App" style={{display:"flex",flexDirection:"column", alignItems:"center"}}>
 
     <h1 ref={header}>
-      HEllo all 
+      Sorting Visualizer
     </h1>
     <Insertion/>
    
