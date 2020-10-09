@@ -191,7 +191,7 @@ const onAnimateMobile = () => {
                 key={num}
                 ref={addToRefs}
                 className="block"
-                style={{width:`${num*6}px`, backgroundColor:"ivory",margin:"0",padding:"0",height:"10px"}}
+                style={{width:`${num*6}px`, backgroundColor:"ivory",marginLeft:"5px",padding:"0",height:"10px"}}
                 onClick={onAnimateMobile}
                 >
                     
