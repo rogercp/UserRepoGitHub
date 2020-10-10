@@ -9,7 +9,7 @@ const randomListOfNums =(n)=>
 
     for( let i =0; i<n; i++)
     {
-        let randomNum = Math.floor(Math.random() * 30) + 1;
+        let randomNum = Math.floor(Math.random() * 20) + 1;
 
         nums.push(randomNum);
 
@@ -73,9 +73,35 @@ const onAnimate1 = () => {
 
 
 
+}
+
+
+const onAnimate2 = () => {
+
+    const rect = revealsRef.current[0].getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left)
+
+    const rect2 = revealsRef.current[10].getBoundingClientRect();
+    console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
+
+
+    let tl = gsap.timeline(); 
+
+
+    tl.to(revealsRef.current[0], 0.9, {x: 200,delay: 0.5,backgroundColor:"red"})
+    .to(revealsRef.current[10], 0.9, {x: 200,delay: 0.5,backgroundColor:"red"})
+
+    .to(revealsRef.current[0], 0.9, {y:  (rect2.bottom-rect.bottom),delay: 0.5})
+    .to(revealsRef.current[10], 0.9, {y: -(rect2.bottom-rect.bottom) ,delay: 0.5})
+    
+    .to(revealsRef.current[0], 0.9, {x: -(rect2.bottom-rect2.top+ revealsRef.current[10]),delay: 0.5,backgroundColor:"white"})
+    .to(revealsRef.current[10], 0.9, {x: -(rect.bottom-rect.top +revealsRef.current[0]),delay: 0.5,backgroundColor:"white"});
+
+
 
 
 }
+
 
 
 
@@ -88,22 +114,16 @@ const onAnimate = () => {
     for(let i = 0 ;i<revealsRef.current.length;i++)
     {
         
-    
         tl.to(revealsRef.current[i], 0.1, {y: 100,backgroundColor:"red",duration:2})
         .to(revealsRef.current[i], 0.1, {y: -10,backgroundColor:"white",duration:2});
-
-
     }
 
     
     for(let i = 0 ;i<revealsRef.current.length;i++)
     {
         
-    
         tl.to(revealsRef.current[i], 0.01, {y: 100,backgroundColor:"red",duration:2})
         .to(revealsRef.current[i], 0.01, {y: -10,backgroundColor:"white",duration:2});
-
-
 
     }
 
@@ -111,33 +131,23 @@ const onAnimate = () => {
 
 
 
-
-
 const onAnimateMobile = () => {
 
-
     let tl = gsap.timeline(); 
-  
 
     for(let i = 0 ;i<revealsRef.current.length;i++)
     {
         
-    
         tl.to(revealsRef.current[i], 0.1, {x: 100,backgroundColor:"red",duration:2})
         .to(revealsRef.current[i], 0.1, {x: -10,backgroundColor:"white",duration:2});
 
-
     }
 
-    
     for(let i = 0 ;i<revealsRef.current.length;i++)
     {
         
-    
         tl.to(revealsRef.current[i], 0.01, {x: 100,backgroundColor:"red",duration:2})
         .to(revealsRef.current[i], 0.01, {x: -10,backgroundColor:"white",duration:2});
-
-
 
     }
 
@@ -149,17 +159,25 @@ const onAnimateMobile = () => {
   return (
     <div className="insertion" >
 
-           <p>Insertion Sort</p>
+           <p >Insertion Sort</p>
 
-    <button onClick={onAnimate1}>Run</button>
+           <button onClick={onAnimate1}>Run1</button>
+
+     <button onClick={onAnimate2}>Run2</button>
 
         <section className="blocksNumberWeb" style={{display:"flex", flexDirection:"row",width:"1200px"}}>
 
          {values.map((num,index)=>{
 
             return (
-                <div className="blocksNumber"  style={{display:"flex", flexDirection:"column",width:"100%"}}>
-                <p>{num}</p>
+                <div className="blocksNumber"  style={{display:"flex", flexDirection:"column",width:"100%",alignItems:"center"}}>
+
+                
+                <div>
+
+                <p style={{margin:"1px",padding:"1px"}} >{num}</p>
+
+                </div>
 
                 <div 
                 key={num}
@@ -169,7 +187,6 @@ const onAnimateMobile = () => {
                 onClick={onAnimate}
                 >
                     
-                  
                 </div>
                 </div>
             )
@@ -178,14 +195,18 @@ const onAnimateMobile = () => {
 
         </section>
 
-        <section className="blocksNumberMobile" style={{display:"flex", flexDirection:"column",width:"80vw",justifyContent:"flex-start" }}>
+        <section className="blocksNumberMobile" style={{display:"flex", flexDirection:"column",width:"100vw",justifyContent:"center",alignItems:"center" }}>
 
             {values.map((num,index)=>{
 
             return (
                 <div className="blocksNumber"  style={{display:"flex", flexDirection:"row",width:"100%", alignItems:"center",margin:"0",padding:"0"}}>
 
-                <p>{num}</p>
+                <div style={{width:"10%"}}>
+
+                <p style={{margin:"2px",padding:"2px",fontSize:"11px"}} >{num}</p>
+
+                </div>
 
                 <div 
                 key={num}
