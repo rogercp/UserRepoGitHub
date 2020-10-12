@@ -33,7 +33,7 @@ gsap.to(header.current, {color:"ivory",duration:2})
     <h1 ref={header}>
       Sorting Visualizer
     </h1>
-    <Insertion/>
+    <Bubble/>
    
     </div>
   );

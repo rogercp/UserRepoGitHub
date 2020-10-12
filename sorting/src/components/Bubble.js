@@ -42,6 +42,77 @@ function Bubble() {
     },[]);
 
 
+
+
+
+  
+      
+const  bubbleSort = (arr) =>
+{
+
+let masterTimeLine = gsap.timeline()
+
+  var swapped = true;
+
+	while (swapped){
+
+    swapped = false;
+    
+		for(var i=0 ; i<arr.length-1; i++){
+
+     
+      masterTimeLine.add(iterationanimation(i))
+
+
+			// if(arr[i]>arr[i+1]){
+
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+      //   swapped = true;
+        
+      // }
+      
+		}
+
+	}
+
+
+}
+
+
+const iterationanimation=(current)=>{
+
+  console.log("hitting red" );
+
+  // const rect= revealsRef.current[current].getBoundingClientRect();
+
+  return gsap.timeline().to(revealsRef.current[current],1,{backgroundColor:"red", duration:2}).to(revealsRef.current[current],{backgroundColor:"cadetblue"})
+
+}
+
+// const iterationanimationEnd=(current)=>{
+
+//   console.log("hitting blue" );
+
+//   // const rect= revealsRef.current[current].getBoundingClientRect();
+
+//   return gsap.timeline().to(revealsRef.current[current],{backgroundColor:"cadetblue"})
+
+// }
+
+
+
+
+const initialize  = ()=>{
+
+bubbleSort(values);
+
+
+}
+
+
+
 const addToRefs = (el) =>
 {
 
@@ -165,7 +236,7 @@ const onAnimateFloopfy = () => {
 
     <p >Insertion Sort</p>
 
-    <button onClick={onAnimate1}>Run1</button>
+    <button onClick={initialize}>Run1</button>
 
 <button onClick={onAnimate2}>Run2</button>
 
