@@ -9,7 +9,7 @@ const randomListOfNums =(n)=>
 
     for( let i =0; i<n; i++)
     {
-        let randomNum = Math.floor(Math.random() * 20) + 1;
+        let randomNum = Math.floor(Math.random() * 25) + 1;
 
         nums.push(randomNum);
 
@@ -76,8 +76,11 @@ const onAnimate1 = () => {
 
         let another = gsap.timeline();
 
-        tl.to(revealsRef.current[0], 0.9, {y: 400,delay: 0.5,backgroundColor:"red"})
-        .to(revealsRef.current[10], 0.9, {y: 400,delay: 0.5,backgroundColor:"red"})
+        tl.to(revealsRef.current[0], {backgroundColor:"blue"})
+        .to(revealsRef.current[10], 1, {backgroundColor:"blue"})
+        
+        .to(revealsRef.current[0], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(revealsRef.current[10], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
     
         .to(revealsRef.current[0], 0.9, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
         .to(revealsRef.current[10], 0.9, {x: -(rect2.right-rect.right) ,delay: 0.5},"-=.5")
@@ -85,8 +88,7 @@ const onAnimate1 = () => {
         .to(revealsRef.current[0], 0.9, {y: -(rect2.bottom-rect2.top+ revealsRef.current[10]),delay: 0.5,backgroundColor:"cadetblue"})
         .to(revealsRef.current[10], 0.9, {y: -(rect.bottom-rect.top +revealsRef.current[0]),delay: 0.5,backgroundColor:"cadetblue"});
     
-
-   
+        
 
 
 
@@ -108,8 +110,12 @@ const onAnimate2 = () => {
     let tl = gsap.timeline(); 
 
 
-    tl.to(revealsRefMobile.current[0], 0.9, {x: 200,delay: 0.5,backgroundColor:"red"})
-    .to(revealsRefMobile.current[10], 0.9, {x: 200,delay: 0.5,backgroundColor:"red"})
+    tl.to(revealsRef.current[0], {backgroundColor:"blue"})
+    .to(revealsRef.current[10], 1, {backgroundColor:"blue"})
+    
+    
+    .to(revealsRefMobile.current[0], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
+    .to(revealsRefMobile.current[10], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
 
     .to(revealsRefMobile.current[0],  0.9,{y:  (rect2.bottom-rect.bottom),delay: 0.5},"-=.5")
     .to(revealsRefMobile.current[10],  0.9,{y: -(rect2.bottom-rect.bottom) ,delay: 0.5},"-=.5")
@@ -119,36 +125,37 @@ const onAnimate2 = () => {
 
 
 
-
-
 }
 
 
 
 
-// const onAnimate = () => {
+const onAnimateFloopfy = () => {
 
 
-//     let tl = gsap.timeline(); 
+    let tl = gsap.timeline(); 
   
+    
+    const rect2 = revealsRefMobile.current[0].getBoundingClientRect();
+    console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
 
-//     for(let i = 0 ;i<revealsRef.current.length;i++)
-//     {
+    for(let i = 0 ;i<revealsRef.current.length;i++)
+    {
         
-//         tl.to(revealsRef.current[i], 0.1, {y: 100,backgroundColor:"red",duration:2})
-//         .to(revealsRef.current[i], 0.1, {y: -10,backgroundColor:"white",duration:2});
-//     }
+        tl.to(revealsRef.current[i], 0.05, {y:100 ,duration:2})
+        .to(revealsRef.current[i], 0.05, {y: -(rect2.bottom-rect2.top+ revealsRef.current[i]),duration:2});
+    }
 
     
-//     for(let i = 0 ;i<revealsRef.current.length;i++)
-//     {
+    for(let i = 0 ;i<revealsRef.current.length;i++)
+    {
         
-//         tl.to(revealsRef.current[i], 0.01, {y: 100,backgroundColor:"red",duration:2})
-//         .to(revealsRef.current[i], 0.01, {y: -10,backgroundColor:"white",duration:2});
+        tl.to(revealsRef.current[i], 0.01, {y: 100,duration:2})
+        .to(revealsRef.current[i], 0.01, {y: -(rect2.bottom-rect2.top+ revealsRef.current[i]),duration:2});
 
-//     }
+    }
 
-// }
+}
 
 
 
@@ -191,12 +198,12 @@ const onAnimate2 = () => {
          {values.map((num,index)=>{
 
             return (
-                <div className="blocksNumber"  key={num} ref={addToRefs}  style={{display:"flex", flexDirection:"column",width:"100%",alignItems:"center"}}>
+                <div className="blocksNumber"  key={num} ref={addToRefs}  style={{display:"flex", flexDirection:"column",width:"100%",alignItems:"center",height:"100vh"}}>
 
                 
                 <div>
 
-                <p style={{margin:"1px",padding:"1px"}} >{num}</p>
+                <p style={{margin:"1px",padding:"1px",color:"white"}} >{num}</p>
 
                 </div>
 
@@ -205,6 +212,7 @@ const onAnimate2 = () => {
                 className="block"
                 style={{height:`${num*10}px`, backgroundColor:"ivory",margin:"5px",width:"80%"}}
             
+                onClick={onAnimateFloopfy}
                 >
 
                 </div>
@@ -222,9 +230,9 @@ const onAnimate2 = () => {
             return (
                 <div className="blocksNumber"   key={num} ref={addToRefsMobile} style={{display:"flex", flexDirection:"row",width:"100%", alignItems:"center",margin:"0",padding:"0"}}>
 
-                <div style={{width:"10%"}}>
+                <div >
 
-                <p style={{margin:"2px",padding:"2px",fontSize:"11px"}} >{num}</p>
+                <p style={{margin:"2px",padding:"2px",fontSize:"11px",color:"white"}} >{num}</p>
 
                 </div>
 
