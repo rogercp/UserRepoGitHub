@@ -36,8 +36,6 @@ function Bubble() {
     const useEffect=(()=>
     {
 
-    
-
 
     },[]);
 
@@ -50,7 +48,7 @@ function Bubble() {
 const  bubbleSort = (arr) =>
 {
 
-let masterTimeLine = gsap.timeline()
+const masterTimeLine = gsap.timeline({autoRemoveChildren: true})
 
   var swapped = true;
 
@@ -60,47 +58,90 @@ let masterTimeLine = gsap.timeline()
     
 		for(var i=0 ; i<arr.length-1; i++){
 
-     
-      masterTimeLine.add(iterationanimation(i))
 
+			if(arr[i]>arr[i+1]){
 
-			// if(arr[i]>arr[i+1]){
-
-			// 	var temp = arr[i];
-			// 	arr[i] = arr[i+1];
-			// 	arr[i+1] = temp;
-      //   swapped = true;
+        var temp = arr[i];
         
-      // }
+        arr[i] = arr[i+1];
+        
+        arr[i+1] = temp;
+        
+        swapped = true;
+
+        masterTimeLine.add(iterationanimation(i,i+1));
+
+  
+
+      }else
+      {
+
+        masterTimeLine.add(iterationanimationNoSwap(i,i+1));
+
+      }
+
       
-		}
-
-	}
-
-
-}
+    }
+    
 
 
-const iterationanimation=(current)=>{
+  }
+  console.log(masterTimeLine , )
 
-  console.log("hitting red" );
-
-  // const rect= revealsRef.current[current].getBoundingClientRect();
-
-  return gsap.timeline().to(revealsRef.current[current],1,{backgroundColor:"red", duration:2}).to(revealsRef.current[current],{backgroundColor:"cadetblue"})
 
 }
 
-// const iterationanimationEnd=(current)=>{
+const iterationanimationNoSwap=(current,next)=>{
 
-//   console.log("hitting blue" );
+        const rect = revealsRef.current[current].getBoundingClientRect();
+        console.log(rect.top, rect.right, rect.bottom, rect.left)
 
-//   // const rect= revealsRef.current[current].getBoundingClientRect();
+        const rect2 = revealsRef.current[next].getBoundingClientRect();
+        console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
 
-//   return gsap.timeline().to(revealsRef.current[current],{backgroundColor:"cadetblue"})
+        let tl = gsap.timeline({autoRemoveChildren: true}); 
 
-// }
+        return tl.to(revealsRef.current[current], {backgroundColor:"blue"})
+        .to(revealsRef.current[next], 1, {backgroundColor:"blue"})
+        
+        .to(revealsRef.current[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(revealsRef.current[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
 
+        .to(revealsRef.current[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRef.current[next]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(revealsRef.current[next], 0.1, {y: -(rect.bottom-rect.top +revealsRef.current[current]),delay: 0.5,backgroundColor:"cadetblue"})
+
+  
+
+        
+}
+
+
+const iterationanimation=(current,next)=>{
+
+  const rect = revealsRef.current[current].getBoundingClientRect();
+  console.log(rect.top, rect.right, rect.bottom, rect.left)
+
+  const rect2 = revealsRef.current[next].getBoundingClientRect();
+  console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
+
+  let tl = gsap.timeline({autoRemoveChildren: true}); 
+
+  return tl.to(revealsRef.current[current], {backgroundColor:"blue"})
+  .to(revealsRef.current[next], 1, {backgroundColor:"blue"})
+  
+  .to(revealsRef.current[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  .to(revealsRef.current[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+
+  .to(revealsRef.current[current], 0.1, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
+  .to(revealsRef.current[next], 0.1, {x: -(rect2.right-rect.right) ,delay: 0.5},"-=.5")
+  
+  .to(revealsRef.current[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRef.current[next]),delay: 0.5,backgroundColor:"cadetblue"})
+  .to(revealsRef.current[next], 0.1, {y: -(rect.bottom-rect.top +revealsRef.current[current]),delay: 0.5,backgroundColor:"cadetblue"})
+
+
+
+  
+}
 
 
 
@@ -108,9 +149,7 @@ const initialize  = ()=>{
 
 bubbleSort(values);
 
-
 }
-
 
 
 const addToRefs = (el) =>
