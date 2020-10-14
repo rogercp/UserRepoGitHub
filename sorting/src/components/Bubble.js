@@ -21,8 +21,8 @@ const randomListOfNums =(n)=>
 
 function Bubble() {
 
-  const [values, setValues] = useState(randomListOfNums(20))
-    const [mobileValues, setMobileValues] = useState(randomListOfNums(20))
+  const [values, setValues] = useState(randomListOfNums(5))
+    const [mobileValues, setMobileValues] = useState(randomListOfNums(5))
 
 
     const revealsRef = React.useRef([]);
@@ -39,58 +39,71 @@ function Bubble() {
     {
 
 
+
+
+
     },[]);
 
 
 
       
-const  bubbleSort = (arr) =>
+const  bubbleSort = async () =>
 {
 
-
-const masterTimeLine = gsap.timeline({autoRemoveChildren: true})
+const masterTimeLine = gsap.timeline()
 
   var swapped = true;
 
-	while (swapped){
+  let current = 1;
+
+  	while (swapped){
 
     swapped = false;
     
-		for(var i=0 ; i<arr.length-1; i++){
+   
+		for(var i=0 ; i<revealsRef.current.length-1; i++){
 
+      let num1 = Number(revealsRef.current[i].innerText);
 
-			if(arr[i].innerText>arr[i+1].innerText){
+      let num2 = Number(revealsRef.current[i+1].innerText);
 
-        masterTimeLine.add(iterationanimation(i,i+1));
+			if( num1 > num2){
 
-        var temp = arr[i];
+        var temp = revealsRef.current[i];
         
-        arr[i] = arr[i+1];
+        revealsRef.current[i] = revealsRef.current[i+1];
         
-        arr[i+1] = temp;
+        revealsRef.current[i+1] = temp;
         
         swapped = true;
+     
+        await iterationanimation(i,i+1,current);
 
+        current++;
 
       }else
       {
+         await iterationanimationNoSwap(i,i+1);
 
-        masterTimeLine.add(iterationanimationNoSwap(i,i+1));
+         current = 1;
 
       }
-
-      
+ 
+  
     }
-    
 
+    current = 1;
 
   }
-  console.log(masterTimeLine , )
+
+  onAnimateFloopfy();
 
 
 }
 
-const iterationanimationNoSwap=(current,next)=>{
+const iterationanimationNoSwap= (current,next)=>{
+
+
 
         const rect = revealsRef.current[current].getBoundingClientRect();
         console.log(rect.top, rect.right, rect.bottom, rect.left)
@@ -100,8 +113,8 @@ const iterationanimationNoSwap=(current,next)=>{
 
         let tl = gsap.timeline({autoRemoveChildren: true}); 
 
-        return tl.to(revealsRef.current[current], {backgroundColor:"blue"})
-        .to(revealsRef.current[next], 1, {backgroundColor:"blue"})
+         tl.to(revealsRef.current[current], {backgroundColor:"blue"})
+        .to(revealsRef.current[next], .5, {backgroundColor:"blue"})
         
         .to(revealsRef.current[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
         .to(revealsRef.current[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
@@ -109,43 +122,47 @@ const iterationanimationNoSwap=(current,next)=>{
         .to(revealsRef.current[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRef.current[next]),delay: 0.5,backgroundColor:"cadetblue"})
         .to(revealsRef.current[next], 0.1, {y: -(rect.bottom-rect.top +revealsRef.current[current]),delay: 0.5,backgroundColor:"cadetblue"})
 
+        return tl;
+
   
+
         
 }
 
 
-const iterationanimation=(current,next)=>{
+const iterationanimation= (current,next,iterator)=>{
 
-  const rect = revealsRef.current[current].getBoundingClientRect();
-  console.log(rect.top, rect.right, rect.bottom, rect.left)
+  var rect = revealsRef.current[current].getBoundingClientRect();
+  var rect2 = revealsRef.current[next].getBoundingClientRect();
 
-  const rect2 = revealsRef.current[next].getBoundingClientRect();
-  console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
+  let tl2 = gsap.timeline({autoRemoveChildren: true}); 
 
-  let tl = gsap.timeline({autoRemoveChildren: true}); 
-
-  return tl.to(revealsRef.current[current], {backgroundColor:"blue"})
-  .to(revealsRef.current[next], 1, {backgroundColor:"blue"})
+  tl2.to(revealsRef.current[current], {backgroundColor:"blue"})
+  .to(revealsRef.current[next], .5, {backgroundColor:"blue"})
   
   .to(revealsRef.current[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
   .to(revealsRef.current[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
 
-  .to(revealsRef.current[current], 0.1, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
-  .to(revealsRef.current[next], 0.1, {x: -(rect2.right-rect.right) ,delay: 0.5},"-=.5")
+  .to(revealsRef.current[current], 0.1, {x:  (rect2.left-rect.left),delay: 0.5},"-=.5")
+  .to(revealsRef.current[next], 0.1, {x: -((rect2.left-rect.left)*iterator),delay: 0.5},"-=.5")
   
   .to(revealsRef.current[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRef.current[next]),delay: 0.5,backgroundColor:"cadetblue"})
   .to(revealsRef.current[next], 0.1, {y: -(rect.bottom-rect.top +revealsRef.current[current]),delay: 0.5,backgroundColor:"cadetblue"})
 
 
+  rect = null;
 
-  
+  rect2 = null;
+  return tl2;
+
+
 }
 
 
 
 const initialize  = ()=>{
 
-bubbleSort(revealsRef.current);
+bubbleSort();
 
 }
 
