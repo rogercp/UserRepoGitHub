@@ -33,6 +33,8 @@ function Bubble() {
 
 
 
+
+
     const useEffect=(()=>
     {
 
@@ -41,12 +43,10 @@ function Bubble() {
 
 
 
-
-
-  
       
 const  bubbleSort = (arr) =>
 {
+
 
 const masterTimeLine = gsap.timeline({autoRemoveChildren: true})
 
@@ -59,7 +59,9 @@ const masterTimeLine = gsap.timeline({autoRemoveChildren: true})
 		for(var i=0 ; i<arr.length-1; i++){
 
 
-			if(arr[i]>arr[i+1]){
+			if(arr[i].innerText>arr[i+1].innerText){
+
+        masterTimeLine.add(iterationanimation(i,i+1));
 
         var temp = arr[i];
         
@@ -69,9 +71,6 @@ const masterTimeLine = gsap.timeline({autoRemoveChildren: true})
         
         swapped = true;
 
-        masterTimeLine.add(iterationanimation(i,i+1));
-
-  
 
       }else
       {
@@ -111,7 +110,6 @@ const iterationanimationNoSwap=(current,next)=>{
         .to(revealsRef.current[next], 0.1, {y: -(rect.bottom-rect.top +revealsRef.current[current]),delay: 0.5,backgroundColor:"cadetblue"})
 
   
-
         
 }
 
@@ -147,7 +145,7 @@ const iterationanimation=(current,next)=>{
 
 const initialize  = ()=>{
 
-bubbleSort(values);
+bubbleSort(revealsRef.current);
 
 }
 
