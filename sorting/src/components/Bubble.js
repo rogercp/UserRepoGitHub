@@ -29,10 +29,10 @@ function Bubble() {
 
     let newArrayState =  revealsRef.current = []
 
-    const [revealsRefs,setRevealsRefs] = useState(newArrayState);
+    // const [revealsRefs,setRevealsRefs] = useState(newArrayState);
 
 
-          console.log(values,"values")
+     console.log(values,"values")
 
 
 
@@ -47,8 +47,6 @@ function Bubble() {
 
     const useEffect=(()=>
     {
-
-
 
 
       
@@ -70,14 +68,19 @@ var swapped = true;
 
     swapped = false;
 
-		for(var i=0 ; i<revealsRefs.length-1; i++){
 
-      let num1 = Number(revealsRefs[i].innerText);
+		for(var i=0 ; i<values.length-1; i++){
 
-      let num2 = Number(revealsRefs[i+1].innerText);
+      let num1 = Number(values[i]);
+
+      let num2 = Number(values[i+1]);
+
+
+      // console.log(revealsRefs,"valuesbefore")
 
 			if( num1 > num2){
 
+     
         await iterationanimation(i,i+1);
 
         let arrCopy1 = [...values]
@@ -89,20 +92,19 @@ var swapped = true;
         arrCopy1[i+1] = temp
         
         setValues(arrCopy1)
+      
+        // let arrCopyRefs = [...newArrayState]
 
-        let arrCopyRefs = [...revealsRefs]
+        // var temp = arrCopyRefs[i];
 
-        var temp = arrCopyRefs[i];
+        // arrCopyRefs[i] = arrCopyRefs[i+1]
 
-        arrCopyRefs[i] = arrCopyRefs[i+1]
-
-        arrCopyRefs[i+1] = temp
-        
-        setRevealsRefs(arrCopyRefs)
-
+        // arrCopyRefs[i+1] = temp
 
         swapped = true;
 
+
+        // console.log(revealsRefs,"valuesafter")
 
       }else
       {
@@ -114,8 +116,8 @@ var swapped = true;
 
   }
 
-
-  onAnimateFloopfy();
+  console.log(values,"values")
+  // onAnimateFloopfy();
 
 
 }
@@ -124,22 +126,22 @@ const iterationanimationNoSwap= (current,next)=>{
 
 
 
-        const rect = revealsRefs[current].getBoundingClientRect();
+        const rect = newArrayState[current].getBoundingClientRect();
         console.log(rect.top, rect.right, rect.bottom, rect.left)
 
-        const rect2 = revealsRefs[next].getBoundingClientRect();
+        const rect2 = newArrayState[next].getBoundingClientRect();
         console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
 
         let tl = gsap.timeline({autoRemoveChildren: true}); 
 
-         tl.to(revealsRefs[current], {backgroundColor:"blue"})
-        .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+         tl.to(newArrayState[current], {backgroundColor:"blue"})
+        .to(newArrayState[next], .5, {backgroundColor:"blue"})
         
-        .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
-        .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(newArrayState[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(newArrayState[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
 
-        .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
-        .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(newArrayState[current], 0.1, {y: -(rect2.bottom-rect2.top+ newArrayState[next]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(newArrayState[next], 0.1, {y: -(rect.bottom-rect.top +newArrayState[current]),delay: 0.5,backgroundColor:"cadetblue"})
 
         return tl;
 
@@ -148,24 +150,28 @@ const iterationanimationNoSwap= (current,next)=>{
 }
 
 
-const iterationanimation= (current,next)=>{
+const iterationanimation=  (current,next)=>{
 
-  const rect = revealsRefs[current].getBoundingClientRect();
-  const rect2 = revealsRefs[next].getBoundingClientRect();
+console.log("hitting")
+
+  const rect = newArrayState[current].getBoundingClientRect();
+  const rect2 = newArrayState[next].getBoundingClientRect();
 
   let tl2 = gsap.timeline({autoRemoveChildren: true}); 
 
-  tl2.to(revealsRefs[current], {backgroundColor:"blue"})
-  .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+   tl2.to(newArrayState[current], {backgroundColor:"blue"})
+  .to(newArrayState[next], .5, {backgroundColor:"blue"})
   
-  .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
-  .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  .to(newArrayState[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  .to(newArrayState[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
 
-  .to(revealsRefs[current], 0.1, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
-  .to(revealsRefs[next], 0.1, {x: -(rect2.left-rect.left),delay: 0.5},"-=.5")
+  .to(newArrayState[current], 0.1, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
+  .to(newArrayState[next], 0.1, {x: -(rect2.right-rect.right),delay: 0.5},"-=.5")
   
-  .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
-  .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+  .to(newArrayState[current], 0.1, {y: -(rect2.bottom-rect2.top+ newArrayState[next]),delay: 0.5,backgroundColor:"cadetblue"})
+  .to(newArrayState[next], 0.1, {y: -(rect.bottom-rect.top +newArrayState[current]),delay: 0.5,backgroundColor:"cadetblue"})
+
+
 
   return tl2;
 
@@ -200,97 +206,97 @@ const addToRefsMobile = (el) =>
 }
 
 
-const onAnimate1 = () => {
+// const onAnimate1 = () => {
 
 
-        const rect = revealsRefs.current[0].getBoundingClientRect();
-        console.log(rect.top, rect.right, rect.bottom, rect.left)
+//         const rect = revealsRefs.current[0].getBoundingClientRect();
+//         console.log(rect.top, rect.right, rect.bottom, rect.left)
 
-        const rect2 = revealsRefs.current[10].getBoundingClientRect();
-        console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
+//         const rect2 = revealsRefs.current[10].getBoundingClientRect();
+//         console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
 
-        let tl = gsap.timeline(); 
+//         let tl = gsap.timeline(); 
 
-        let another = gsap.timeline();
+//         let another = gsap.timeline();
 
-        tl.to(revealsRefs.current[0], {backgroundColor:"blue"})
-        .to(revealsRefs.current[10], 1, {backgroundColor:"blue"})
+//         tl.to(revealsRefs.current[0], {backgroundColor:"blue"})
+//         .to(revealsRefs.current[10], 1, {backgroundColor:"blue"})
         
-        .to(revealsRefs.current[0], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
-        .to(revealsRefs.current[10], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
+//         .to(revealsRefs.current[0], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
+//         .to(revealsRefs.current[10], 0.9, {backgroundColor:"blue",y: 400,delay: 0.5})
     
-        .to(revealsRefs.current[0], 0.9, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
-        .to(revealsRefs.current[10], 0.9, {x: -(rect2.right-rect.right) ,delay: 0.5},"-=.5")
+//         .to(revealsRefs.current[0], 0.9, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
+//         .to(revealsRefs.current[10], 0.9, {x: -(rect2.right-rect.right) ,delay: 0.5},"-=.5")
         
-        .to(revealsRefs.current[0], 0.9, {y: -(rect2.bottom-rect2.top+ revealsRefs.current[10]),delay: 0.5,backgroundColor:"cadetblue"})
-        .to(revealsRefs.current[10], 0.9, {y: -(rect.bottom-rect.top +revealsRefs.current[0]),delay: 0.5,backgroundColor:"cadetblue"});
+//         .to(revealsRefs.current[0], 0.9, {y: -(rect2.bottom-rect2.top+ revealsRefs.current[10]),delay: 0.5,backgroundColor:"cadetblue"})
+//         .to(revealsRefs.current[10], 0.9, {y: -(rect.bottom-rect.top +revealsRefs.current[0]),delay: 0.5,backgroundColor:"cadetblue"});
     
         
 
 
 
-}
+// }
 
 
 
-const onAnimate2 = () => {
+// const onAnimate2 = () => {
 
 
 
-    const rect = revealsRefMobile.current[0].getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left)
+//     const rect = revealsRefMobile.current[0].getBoundingClientRect();
+//     console.log(rect.top, rect.right, rect.bottom, rect.left)
 
-    const rect2 = revealsRefMobile.current[10].getBoundingClientRect();
-    console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
-
-
-    let tl = gsap.timeline(); 
+//     const rect2 = revealsRefMobile.current[10].getBoundingClientRect();
+//     console.log(rect2.top, rect2.right, rect2.bottom, rect2.left)
 
 
-    tl.to(revealsRefs[0], {backgroundColor:"blue"})
-    .to(revealsRefs[10], 1, {backgroundColor:"blue"})
+//     let tl = gsap.timeline(); 
+
+
+//     tl.to(revealsRefs[0], {backgroundColor:"blue"})
+//     .to(revealsRefs[10], 1, {backgroundColor:"blue"})
     
     
-    .to(revealsRefMobile.current[0], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
-    .to(revealsRefMobile.current[10], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
+//     .to(revealsRefMobile.current[0], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
+//     .to(revealsRefMobile.current[10], 0.9, {x: 200,delay: 0.5,backgroundColor:"blue"})
 
-    .to(revealsRefMobile.current[0],  0.9,{y:  (rect2.bottom-rect.bottom),delay: 0.5},"-=.5")
-    .to(revealsRefMobile.current[10],  0.9,{y: -(rect2.bottom-rect.bottom) ,delay: 0.5},"-=.5")
+//     .to(revealsRefMobile.current[0],  0.9,{y:  (rect2.bottom-rect.bottom),delay: 0.5},"-=.5")
+//     .to(revealsRefMobile.current[10],  0.9,{y: -(rect2.bottom-rect.bottom) ,delay: 0.5},"-=.5")
     
-    .to(revealsRefMobile.current[0], 0.9, {x: -(rect2.bottom-rect2.top+ revealsRefMobile.current[10]),delay: 0.5,backgroundColor:"cadetblue"})
-    .to(revealsRefMobile.current[10], 0.9, {x: -(rect.bottom-rect.top +revealsRefs[0]),delay: 0.5,backgroundColor:"cadetblue"});
+//     .to(revealsRefMobile.current[0], 0.9, {x: -(rect2.bottom-rect2.top+ revealsRefMobile.current[10]),delay: 0.5,backgroundColor:"cadetblue"})
+//     .to(revealsRefMobile.current[10], 0.9, {x: -(rect.bottom-rect.top +revealsRefs[0]),delay: 0.5,backgroundColor:"cadetblue"});
 
 
 
 
 
-}
+// }
 
 
 
-const onAnimateFloopfy = () => {
+// const onAnimateFloopfy = () => {
 
 
-  let tl = gsap.timeline(); 
+//   let tl = gsap.timeline(); 
 
 
-  for(let i = 0 ;i<revealsRefs.length;i++)
-  {
+//   for(let i = 0 ;i<revealsRefs.length;i++)
+//   {
       
-      tl.to(revealsRefs[i], 0.1, {y: 100,duration:2})
-      .to(revealsRefs[i], 0.1, {y: -10,duration:2});
-  }
+//       tl.to(revealsRefs[i], 0.1, {y: 100,duration:2})
+//       .to(revealsRefs[i], 0.1, {y: -10,duration:2});
+//   }
 
   
-  for(let i = 0 ;i<revealsRefs.length;i++)
-  {
+//   for(let i = 0 ;i<revealsRefs.length;i++)
+//   {
       
-      tl.to(revealsRefs[i], 0.01, {y: 100,duration:2})
-      .to(revealsRefs[i], 0.01, {y: -10,duration:2});
+//       tl.to(revealsRefs[i], 0.01, {y: 100,duration:2})
+//       .to(revealsRefs[i], 0.01, {y: -10,duration:2});
 
-  }
+//   }
 
-}
+// }
 
 
 
@@ -305,7 +311,7 @@ const onAnimateFloopfy = () => {
 
     <button onClick={initialize}>Run1</button>
 
-<button onClick={onAnimate2}>Run2</button>
+<button >Run2</button>
 
  <section className="blocksNumberWeb" style={{display:"flex", flexDirection:"row",width:"1200px"}}>
 
@@ -326,7 +332,7 @@ const onAnimateFloopfy = () => {
          className="block"
          style={{height:`${num*10}px`, backgroundColor:"ivory",margin:"5px",width:"80%"}}
      
-         onClick={onAnimateFloopfy}
+  
          >
 
          </div>
