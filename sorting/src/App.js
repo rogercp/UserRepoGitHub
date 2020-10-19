@@ -2,10 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 
 import Bubble from './components/Bubble';
-import Insertion from './components/Insertion';
-import Merge from './components/Merge';
-import Quick from './components/Quick';
-import Selection from './components/Selection';
+
 
 // import './GSAPComponent.css';
 import {gsap} from 'gsap';

@@ -21,7 +21,10 @@ const randomListOfNums =(n)=>
 
 function Bubble() {
 
-    const [values, setValues] = useState(randomListOfNums(5))
+
+  const myVals = randomListOfNums(5)
+
+    const [values, setValues] = useState(myVals)
 
     const [mobileValues, setMobileValues] = useState(randomListOfNums(5))
 
@@ -29,14 +32,17 @@ function Bubble() {
 
     let newArrayState =  revealsRef.current = []
 
-    // const [revealsRefs,setRevealsRefs] = useState(newArrayState);
+    const [revealsRefs,setRevealsRefs] = useState(newArrayState);
 
+
+    const[trigger,setTrigger] = useState(false);
 
      console.log(values,"values")
 
 
-
     // revealsRefs = [];
+
+
 
     const revealsRefMobile= React.useRef([]);
     revealsRefMobile.current = [];
@@ -49,8 +55,6 @@ function Bubble() {
     {
 
 
-      
-
     },[]);
 
 
@@ -62,6 +66,7 @@ const  bubbleSort = async () =>
 
 // const masterTimeLine = gsap.timeline()
 
+let iterator= 1;
 var swapped = true;
 
   	while (swapped){
@@ -69,58 +74,47 @@ var swapped = true;
     swapped = false;
 
 
-		for(var i=0 ; i<values.length-1; i++){
+		for(var i=0 ; i<revealsRefs.length-1; i++){
 
-      let num1 = Number(values[i]);
+      let num1 = Number(revealsRefs[i].innerText);
 
-      let num2 = Number(values[i+1]);
+      let num2 = Number(revealsRefs[i+1].innerText);
 
-
-      // console.log(revealsRefs,"valuesbefore")
 
 			if( num1 > num2){
 
-     
-        await iterationanimation(i,i+1);
+        await iterationanimation(i,i+1,iterator);
 
-        let arrCopy1 = [...values]
+        var temp2 = revealsRefs[i];
 
-        var temp = arrCopy1[i];
+        revealsRefs[i] = revealsRefs[i+1]
 
-        arrCopy1[i] = arrCopy1[i+1]
-
-        arrCopy1[i+1] = temp
-        
-        setValues(arrCopy1)
-      
-        // let arrCopyRefs = [...newArrayState]
-
-        // var temp = arrCopyRefs[i];
-
-        // arrCopyRefs[i] = arrCopyRefs[i+1]
-
-        // arrCopyRefs[i+1] = temp
+        revealsRefs[i+1] = temp2
 
         swapped = true;
 
-
-        // console.log(revealsRefs,"valuesafter")
+        iterator++;
 
       }else
       {
          await iterationanimationNoSwap(i,i+1);
+         iterator = 1;
       }
  
+      
 
     }
 
+    iterator = 1;
+
+
   }
 
-  console.log(values,"values")
   // onAnimateFloopfy();
 
 
 }
+
 
 const iterationanimationNoSwap= (current,next)=>{
 
@@ -149,31 +143,136 @@ const iterationanimationNoSwap= (current,next)=>{
         
 }
 
+let myObj = {}
 
-const iterationanimation=  (current,next)=>{
 
-console.log("hitting")
+const iterationanimation = (current,next,iterator)=>{
 
-  const rect = newArrayState[current].getBoundingClientRect();
-  const rect2 = newArrayState[next].getBoundingClientRect();
+  console.log(myObj,"myObj")
 
-  let tl2 = gsap.timeline({autoRemoveChildren: true}); 
+    if( myObj[current] || myObj[next])
+    {
+      console.log("hittingartatertert")
 
-   tl2.to(newArrayState[current], {backgroundColor:"blue"})
-  .to(newArrayState[next], .5, {backgroundColor:"blue"})
+      if(myObj[next] === true)
+      {
+        console.log("hittingt firs if")
+
+        const rect = revealsRefs[current].getBoundingClientRect();
+        const rect2 = revealsRefs[next].getBoundingClientRect();
   
-  .to(newArrayState[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
-  .to(newArrayState[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
-
-  .to(newArrayState[current], 0.1, {x:  (rect2.right-rect.right),delay: 0.5},"-=.5")
-  .to(newArrayState[next], 0.1, {x: -(rect2.right-rect.right),delay: 0.5},"-=.5")
+        let tl2 = gsap.timeline({autoRemoveChildren: true}); 
   
-  .to(newArrayState[current], 0.1, {y: -(rect2.bottom-rect2.top+ newArrayState[next]),delay: 0.5,backgroundColor:"cadetblue"})
-  .to(newArrayState[next], 0.1, {y: -(rect.bottom-rect.top +newArrayState[current]),delay: 0.5,backgroundColor:"cadetblue"})
+        tl2.to(revealsRefs[current], {backgroundColor:"blue"})
+        .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+        
+        .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  
+        .to(revealsRefs[current], 0.1, {x:  (rect2.right-rect.right)*iterator,delay: 0.5},"-=.5")
+        .to(revealsRefs[next], 0.1, {x: -(rect2.right-rect.right)*iterator*2,delay: 0.5},"-=.5")
+        
+        .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+  
+        return tl2;
+  
+      
+      
+      }
+      
+      else if(myObj[current] === true && myObj[next] == false)
+      {
+
+        console.log("hitting else if")
+
+        const rect = revealsRefs[current].getBoundingClientRect();
+        const rect2 = revealsRefs[next].getBoundingClientRect();
+  
+        let tl2 = gsap.timeline({autoRemoveChildren: true}); 
+  
+        tl2.to(revealsRefs[current], {backgroundColor:"blue"})
+        .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+        
+        .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  
+        .to(revealsRefs[current], 0.1, {x:  (rect2.right-rect.right)*iterator,delay: 0.5},"-=.5")
+        .to(revealsRefs[next], 0.1, {x: -(rect2.right-rect.right)*iterator,delay: 0.5},"-=.5")
+        
+        .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+  
+  
+        return tl2;
+  
+
+      }
+      
+      else{
+        const rect = revealsRefs[current].getBoundingClientRect();
+        const rect2 = revealsRefs[next].getBoundingClientRect();
+  
+        let tl2 = gsap.timeline({autoRemoveChildren: true}); 
+  
+        tl2.to(revealsRefs[current], {backgroundColor:"blue"})
+        .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+        
+        .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+        .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+  
+        .to(revealsRefs[current], 0.1, {x:  (rect2.right-rect.right)*iterator,delay: 0.5},"-=.5")
+        .to(revealsRefs[next], 0.1, {x: -(rect2.right-rect.right),delay: 0.5},"-=.5")
+        
+        .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
+        .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+  
+  
+        return tl2;
+  
+
+      }
+
+
+      myObj[current] = false
+      myObj[next] = false
+      
+
+    }else
+    {
+
+      console.log("hitting")
+    myObj[current] = true
+    myObj[next] = true
 
 
 
-  return tl2;
+    const rect = revealsRefs[current].getBoundingClientRect();
+      const rect2 = revealsRefs[next].getBoundingClientRect();
+
+      let tl2 = gsap.timeline({autoRemoveChildren: true}); 
+
+      tl2.to(revealsRefs[current], {backgroundColor:"blue"})
+      .to(revealsRefs[next], .5, {backgroundColor:"blue"})
+      
+      .to(revealsRefs[current], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+      .to(revealsRefs[next], 0.1, {backgroundColor:"blue",y: 400,delay: 0.5})
+
+      .to(revealsRefs[current], 0.1, {x:  (rect2.right-rect.right)*iterator,delay: 0.5},"-=.5")
+      .to(revealsRefs[next], 0.1, {x: -(rect2.right-rect.right),delay: 0.5},"-=.5")
+      
+      .to(revealsRefs[current], 0.1, {y: -(rect2.bottom-rect2.top+ revealsRefs[next]),delay: 0.5,backgroundColor:"cadetblue"})
+      .to(revealsRefs[next], 0.1, {y: -(rect.bottom-rect.top +revealsRefs[current]),delay: 0.5,backgroundColor:"cadetblue"})
+
+
+
+      return tl2;
+
+
+
+    }
+
+      
 
 }
 
