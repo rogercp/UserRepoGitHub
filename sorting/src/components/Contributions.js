@@ -1,5 +1,7 @@
 import React from 'react';
-
+import GitHubCalendar from 'github-calendar';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
 
 
 
@@ -40,17 +42,23 @@ const useStyles = makeStyles(theme => ({
 function Contributions(props) {
 
     const classes = useStyles();
-let githubUserName = props.location.state.username;
 
-console.log(githubUserName)
+    GitHubCalendar('.calendar', props.username, {
+        responsive: true,
+        summary_text: ' ',
+        tooltips: true,
+      });
+
+
 
   return (
 
-  <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>  
-
-    <p>{githubUserName}</p>
-
-
+  <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px" }}>  
+    <div className='chart-container'>
+            <div className='github-chart'>
+        <div className='calendar'></div>
+        </div>
+        </div>
     </Card>
 
   );

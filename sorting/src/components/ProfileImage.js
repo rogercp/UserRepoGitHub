@@ -1,4 +1,7 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
    
@@ -26,6 +29,12 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
       },
     },
+
+    profileImage:{
+        width:'80%',
+        height:'80%'
+
+    }
   
   
   }))
@@ -33,15 +42,15 @@ const useStyles = makeStyles(theme => ({
 
 function ProfileImage(props) {
     const classes = useStyles();
-let githubUserName = props.location.state.username;
 
-console.log(githubUserName)
+
+
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>  
+    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px" }}>  
 
-    <p>{githubUserName}</p>
+        <Avatar className = {classes.profileImage}  alt={`${props.user.login}`} src={props.user.avatar_url} />
 
 
     </Card>
