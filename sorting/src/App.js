@@ -25,16 +25,12 @@ gsap.to(header.current, {color:"ivory",duration:2})
   return (
     <div className="App" style={{display:"flex",flexDirection:"column", alignItems:"center"}}>
 
-    <h1 ref={header}>
-      Sorting Visualizer
-    </h1>
-
+   
     <Switch>
         <Route exact path='/' component={UserLogin} />
         <Route exact path='/profile/:id' component={UserProfile} />
     </Switch>
 
-    <Bubble/>
    
     </div>
     
