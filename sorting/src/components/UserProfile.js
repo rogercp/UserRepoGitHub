@@ -3,13 +3,39 @@ import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
 import ProfileInfo from './ProfileInfo'
 import Following from './Following'
-
-
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 
+
+
+const useStyles = makeStyles(theme => ({
+   
+
+    main:{
+
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
+
+    },
+    sectionLeft:{
+       
+
+    },
+    sectionRight:{
+
+
+    }
+  
+  
+  }))
+
+
+
 function UserProfile(props) {
+    const classes = useStyles();
 
 let githubUserName = props.location.state.username;
 const [user,setUser] = useState({})
@@ -34,28 +60,27 @@ useEffect(()=>{
 console.log(user,"user")
 
   return (
-
-    <div className='userProfile'>
+<>
+    <div className={classes.main}>
     
-    <section>
+    <section className = {classes.sectionLeft}>
 
     <ProfileImage username={githubUserName} user={user}/>
    <ProfileInfo username={githubUserName} user={user} />
     </section>
     
-<section>
+    <section className = {classes.sectionRight}>
 
-<Following username={githubUserName} user={user} />
-    </section>
- 
-   <section>
-   <Contributions username={githubUserName} user={user}/>
-
-</section>
-
+    <Following username={githubUserName} user={user} />
+        </section >
+    
 
     </div>
-
+     <section className = {classes.profileImage}>
+     <Contributions username={githubUserName} user={user}/>
+ 
+     </section>
+</>
   );
 }
 

@@ -36,8 +36,8 @@ const useStyles = makeStyles(theme => ({
 
     profileImage:{
 
-        width:'30%',
-        height:'30%',
+        width:'40%',
+        height:'40%',
         margin: "5px auto"
     },
   
@@ -59,7 +59,7 @@ function FollowCard(props) {
 
 
   return (
-    <Card className={classes.paper} style={{ border: "black",  maxWidth: "350px",maxHeight:"200px" }}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
+    <Card className={classes.paper} style={{ backgroundColor:"mintcream",border: "black",  maxWidth: "95%",maxHeight:"200px",margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
 
     <div className={classes.section}>
 

@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
 
     profileImage:{
 
-        width:'70%',
-        height:'70%',
+        width:'80%',
+        height:'80%',
         margin: "5px auto"
     },
   
@@ -59,7 +59,7 @@ function ProfileImage(props) {
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px" }}>  
+    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px",margin:"5px" }}>  
 
 
     <div className={classes.section}>
