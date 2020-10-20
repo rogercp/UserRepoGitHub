@@ -3,8 +3,10 @@ import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
 import ProfileInfo from './ProfileInfo'
 import Following from './Following'
+import TopUserLanguages from './TopUserLanguages'
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import GhPolyglot from 'gh-polyglot';
 
 
 
@@ -39,7 +41,7 @@ function UserProfile(props) {
 
 let githubUserName = props.location.state.username;
 const [user,setUser] = useState({})
-
+const [languagesData,setLanguagesData] = useState(null)
 
 useEffect(()=>{
 
@@ -53,11 +55,24 @@ useEffect(()=>{
       console.log(err);
     });
 
+
+    const me = new GhPolyglot(`${githubUserName}`);
+    me.userStats((err, stats) => {
+      if (err) {
+        console.error('Error:', err);
+      }
+      setLanguagesData(stats);
+    });
+
+
+
+
+
 },[githubUserName])
 
 
 
-console.log(user,"user")
+console.log(languagesData,"languages")
 
   return (
 <>
@@ -80,6 +95,12 @@ console.log(user,"user")
      <Contributions username={githubUserName} user={user}/>
  
      </section>
+
+     <section className = {classes.profileImage}>
+     <TopUserLanguages   languagesData= {languagesData}  username={githubUserName} user={user}/>
+ 
+     </section>
+     
 </>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import Card from '@material-ui/core/Card';
+import { RadialChart} from 'react-vis';
+import '../App.css';
 
 const useStyles = makeStyles(theme => ({
    
@@ -36,15 +37,22 @@ const useStyles = makeStyles(theme => ({
 
 function TopUserLanguages(props) {
     const classes = useStyles();
-let githubUserName = props.location.state.username;
-
-console.log(githubUserName)
+    const myData = [{angle: 1,label:'hellp',color :"red"}, 
+    {angle: 5,label:'hellp',color :"yellow"}, 
+    {angle: 2,label:'hellp',color :"green"}]
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}>  
+    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}> 
 
-    <p>{githubUserName}</p>
+    <RadialChart
+
+    style={{margin: "0 auto"}}
+    colorType="literal"
+    showLabels={true}
+    data={myData}
+    width={300}
+    height={300} />
 
 
     </Card>

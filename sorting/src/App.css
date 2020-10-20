@@ -242,3 +242,9 @@ h2.f4.text-normal.mb-3 {
   border: 5px solid transparent;
   border-top-color: rgba(0,0,0,.85)
 }
+
+
+.rv-xy-plot__series--label{
+  fill:black;
+  font-size: 20px;
+}
