@@ -133,7 +133,7 @@ function Following(props) {
 
   return (
 <>
-    <Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px"}}>
+    <Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
 
     <Switch 
     checked={toggleState.toggle}
@@ -151,7 +151,7 @@ function Following(props) {
     </Card>
 
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"475px",overflowY:"scroll",margin:"5px" }}>  
+    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk" }}>  
     
     {toggleState.toggle === false ? 
         <>

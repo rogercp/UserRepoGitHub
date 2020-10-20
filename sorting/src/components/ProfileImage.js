@@ -35,9 +35,9 @@ const useStyles = makeStyles(theme => ({
 
     profileImage:{
 
-        width:'80%',
-        height:'80%',
-        margin: "5px auto"
+        width:'70%',
+        height:'70%',
+        margin: "10px auto"
     },
   
 
@@ -59,7 +59,7 @@ function ProfileImage(props) {
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px",margin:"5px" }}>  
+    <Card onClick={event =>  window.location.href=`${props.user.html_url}`} className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px",margin:"5px", backgroundColor: "cornsilk"}}>  
 
 
     <div className={classes.section}>
@@ -67,7 +67,8 @@ function ProfileImage(props) {
 
     <Avatar className = {classes.profileImage}  alt={`${props.user.login}`} src={props.user.avatar_url} />
 
-    <h1>{props.user.name}</h1>
+    <h1 style={{marginBottom:"0",marginTop:"6px"}}>{props.user.name}</h1>
+    <h3 style={{marginTop:"3px"}}>{props.user.bio}</h3>
   
     </div>
       

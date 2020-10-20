@@ -38,7 +38,9 @@
 }
 
 
-
+h4,h6{
+  margin: 8px;
+}
 
 .blocksNumber{
 
@@ -80,16 +82,16 @@
 
   }
 
-
 }
 
 .calendar {
   font-family: Helvetica, arial;
   border: 1px solid #DDDDDD;
   border-radius: 3px;
-  min-height: 243px;
+  min-height: 220px;
   text-align: center;
   margin: 0 auto;
+  background-color: cornsilk;
 }
 
 .calendar-graph text.wday,
