@@ -1,6 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
+import ProfileInfo from './ProfileInfo'
+import Following from './Following'
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
@@ -33,9 +37,21 @@ console.log(user,"user")
 
     <div className='userProfile'>
     
+    <section>
+
+    <ProfileImage username={githubUserName} user={user}/>
+   <ProfileInfo username={githubUserName} user={user} />
+    </section>
+    
+<section>
+
+<Following username={githubUserName} user={user} />
+    </section>
+ 
+   <section>
    <Contributions username={githubUserName} user={user}/>
-    <ProfileImage user={user}/>
-    <p>{githubUserName}</p>
+
+</section>
 
 
     </div>

@@ -53,13 +53,11 @@ function Contributions(props) {
 
   return (
 
-  <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px" }}>  
-    <div className='chart-container'>
-            <div className='github-chart'>
-        <div className='calendar'></div>
-        </div>
-        </div>
-    </Card>
+//   <Card className={classes.paper} style={{ border: "black", minWidth: "700px", minHeight: "150px" }}>  
+
+        <div className='calendar' ></div>
+
+    // </Card>
 
   );
 }

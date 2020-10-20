@@ -2,7 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
-
+import MyLocationIcon from '@material-ui/icons/MyLocation';
+import EventIcon from '@material-ui/icons/Event';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import ApartmentIcon from '@material-ui/icons/Apartment';
 const useStyles = makeStyles(theme => ({
    
     paper: {
@@ -12,8 +15,8 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(0, 0, 0),
       outline: 'none',
       margin: '1%',
-      flexDirection: "column",
-      justifyContent: "space-between",
+      display:"block",
+      justifyContent: "center",
       alignItems: "center",
       boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
       '&:hover': {
@@ -31,11 +34,20 @@ const useStyles = makeStyles(theme => ({
     },
 
     profileImage:{
-        width:'80%',
-        height:'80%'
+
+        width:'70%',
+        height:'70%',
+        margin: "5px auto"
+    },
+  
+
+    section:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"space-around"
+        
 
     }
-  
   
   }))
 
@@ -45,14 +57,20 @@ function ProfileImage(props) {
 
 
 
-
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px" }}>  
-
-        <Avatar className = {classes.profileImage}  alt={`${props.user.login}`} src={props.user.avatar_url} />
+    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px" }}>  
 
 
+    <div className={classes.section}>
+
+
+    <Avatar className = {classes.profileImage}  alt={`${props.user.login}`} src={props.user.avatar_url} />
+
+    <h1>{props.user.name}</h1>
+  
+    </div>
+      
     </Card>
 
   );
