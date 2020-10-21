@@ -7,10 +7,11 @@ import '../App.css';
 const useStyles = makeStyles(theme => ({
     paper: {
         height: '100%',
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
+        backgroundColor: "cornsilk",
+         boxShadow: theme.shadows[5],
         padding: theme.spacing(0, 0, 0),
         outline: 'none',
+        borderRadius: '50%',
         margin: '1%',
         display:"block",
         justifyContent: "center",
@@ -49,20 +50,12 @@ function TopUserLanguages(props) {
 
     const myData = []
 
+    for(let i = 0; i<incomingData.length-1;i++)
+    {
 
-    console.log(incomingData,"langaugaes data")
-
-      useEffect( ()=>{
-
-      for(let i = 0; i<incomingData.length-1;i++)
-      {
-  
-         myData.push({label:`${incomingData[i].label}`, angle:`${incomingData[i].value}`,color:`${incomingData[i].color}`})
-        
-      }
-
-    },)
-
+       myData.push({label:`${incomingData[i].label}`, angle:`${incomingData[i].value}`,color:`${incomingData[i].color}`})
+      
+    }
 
 
   return (
@@ -73,6 +66,7 @@ function TopUserLanguages(props) {
 
     {myData !== null ? 
       <RadialChart
+      className={classes.paper}
       colorType="literal"
       showLabels={true}
       data={myData}

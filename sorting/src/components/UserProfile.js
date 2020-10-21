@@ -69,12 +69,17 @@ useEffect(()=>{
 },[githubUserName])
 
 
-console.log(languagesData,"languages")
+console.log(user,"languages")
 
   return (
 <>
     <div className={classes.main}>
     
+    <section className = {classes.profileImage}>
+     <TopUserLanguages   languagesData={languagesData}  username={githubUserName} user={user}/>
+ 
+     </section>
+
     <section className = {classes.sectionLeft}>
 
     <ProfileImage username={githubUserName} user={user}/>
@@ -88,15 +93,12 @@ console.log(languagesData,"languages")
     
 
     </div>
-     {/* <section className = {classes.profileImage}>
+     <section className = {classes.profileImage}>
      <Contributions username={githubUserName} user={user}/>
  
-     </section> */}
-
-     <section className = {classes.profileImage}>
-     <TopUserLanguages   languagesData={languagesData}  username={githubUserName} user={user}/>
- 
      </section>
+
+    
      
 </>
   );

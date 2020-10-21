@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 const useStyles = makeStyles(theme => ({
    
     paper: {
+      width:"1100px",
       height: '100%',
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
@@ -53,11 +54,11 @@ function Contributions(props) {
 
   return (
 
-//   <Card className={classes.paper} style={{ border: "black", width: "710px" }}>  
+  <Card className={classes.paper}>  
 
-        <div className='calendar' ></div>
+        <div className='calendar' style={{width:"100%"}}></div>
 
-//  </Card>
+  </Card>
 
   );
 }
