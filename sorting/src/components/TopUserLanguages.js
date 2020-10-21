@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState}from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import { RadialChart} from 'react-vis';
@@ -31,36 +31,60 @@ const useStyles = makeStyles(theme => ({
       },
   
     section:{
-
+      display: "flex",
+       width: "100%", 
+       height: "100%",
     }
   
   }))
 
 
 function TopUserLanguages(props) {
+
+
     const classes = useStyles();
-    const myData = [{angle: 1,label:'hellp',color :"red"}, 
-    {angle: 5,label:'hellp',color :"yellow"}, 
-    {angle: 2,label:'hellp',color :"green"}]
+
+
+    let incomingData= [...props.languagesData]
+
+    const myData = []
+
+
+    console.log(incomingData,"langaugaes data")
+
+      useEffect( ()=>{
+
+      for(let i = 0; i<incomingData.length-1;i++)
+      {
+  
+         myData.push({label:`${incomingData[i].label}`, angle:`${incomingData[i].value}`,color:`${incomingData[i].color}`})
+        
+      }
+
+    },)
+
+
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}> 
+    // <Card className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "325px", maxWidth: "350px" }}> 
 
     <section className = {classes.section}>
 
-
-    <RadialChart
-    colorType="literal"
-    showLabels={true}
-    data={myData}
-    width={300}
-    height={300} />
+    {myData !== null ? 
+      <RadialChart
+      colorType="literal"
+      showLabels={true}
+      data={myData}
+      width={300}
+      height={300} />
+    :null}
+  
 
     </section>
 
 
-    </Card>
+    // </Card>
   );
 }
 
