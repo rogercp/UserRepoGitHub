@@ -69,7 +69,6 @@ useEffect(()=>{
 },[githubUserName])
 
 
-console.log(user,"languages")
 
   return (
 <>
