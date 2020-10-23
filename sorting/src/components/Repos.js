@@ -95,7 +95,7 @@ function Repos(props) {
 
     const [repos,setRepos] = useState([]);
   
-    const [sort,setSort] = useState('all');
+    const [sort,setSort] = useState();
 
     // const [starredRepos,setStarredRepos] = useState([]);
 
@@ -109,7 +109,6 @@ function Repos(props) {
     const returnRepos = ((sort) =>{
 
         let tempArr = [];
-
         axios
         .get(`https://api.github.com/users/${props.username}/repos`)
         .then((response) => {
@@ -121,34 +120,55 @@ function Repos(props) {
           console.log(err);
         });
 
-
     })
 
 
-   const sorter = ((arr,sort)=>{
+   const sorter = ((arr,sorter)=>{
 
-    switch(sort) {
+    switch(sorter) {
         case 'stars':
-  
+        console.log("hitting stars")
+        console.log(sort)
+            arr.sort((a, b) => {
+                return b.stargazers_count - a.stargazers_count;
+            });
+            setRepos(arr)
 
           break;
 
         case 'forks':
-      
+            console.log("hitting forks")
+            console.log(sort)
+            arr.sort((a, b) => {
+                return b.forks - a.forks;
+            });
+            setRepos(arr)
 
           break;
 
         case 'size':
-  
-
+            console.log("hitting size")
+            console.log(sort)
+            arr.sort((a, b) => {
+                return b.size - a.size;
+            });
+            setRepos(arr)
           break;
 
         case 'date':
-      
-
+            console.log("hitting date")
+            console.log(sort)
+            arr.sort((a, b) => {
+                return b.updated_at - a.updated_at;
+            });
+            setRepos(arr)
           break;
 
         default:
+            console.log("hitting default")
+            console.log(sort)
+            setRepos(arr)
+
        
       }
 
@@ -159,10 +179,21 @@ function Repos(props) {
 
 
 
+   const changeSort = ((sorter)=>{
+
+    console.log(sort,"sort")
+
+        setSort(sorter)
+
+
+
+   })
+
     useEffect(()=>{
        
+    returnRepos(sort)
 
-    },[])
+    },[sort])
 
 
 
@@ -181,10 +212,10 @@ function Repos(props) {
 </div>
 
 <div className={classes.section} style={{margin:"1%"}}>
-<Button onClick={()=> returnRepos('stars')} style={{margin:"1%"}} style={{margin:"1%"}} color="primary" variant="contained">Stars</Button>
-<Button onClick={()=> returnRepos('forks')} style={{margin:"1%"}} color="primary" variant="contained">Forks</Button>
-<Button onClick={()=> returnRepos('size')} style={{margin:"1%"}} color="primary" variant="contained">Size</Button>
-<Button onClick={()=> returnRepos('date')} style={{margin:"1%"}} color="primary" variant="contained">Date</Button>
+<Button onClick={()=> changeSort('stars')} style={{margin:"1%"}} style={{margin:"1%"}} color="primary" variant="contained">Stars</Button>
+<Button onClick={()=> changeSort('forks')} style={{margin:"1%"}} color="primary" variant="contained">Forks</Button>
+<Button onClick={()=> changeSort('size')} style={{margin:"1%"}} color="primary" variant="contained">Size</Button>
+<Button onClick={()=> changeSort('date')} style={{margin:"1%"}} color="primary" variant="contained">Date</Button>
 
 </div>
 

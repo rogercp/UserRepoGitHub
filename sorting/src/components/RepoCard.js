@@ -94,6 +94,14 @@ function RepoCard(props) {
 
     </section>
 
+
+
+<section className={classes.subSection}>
+
+
+    <p>{props.repo.size} mb</p>
+
+</section>
     </section>
     <section className={classes.section}>
 
