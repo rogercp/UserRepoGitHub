@@ -9,6 +9,7 @@ import ApartmentIcon from '@material-ui/icons/Apartment';
 import RepoCard from './RepoCard'
 import axios from 'axios';
 import Switch from '@material-ui/core/Switch';
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles(theme => ({
@@ -94,13 +95,26 @@ function Repos(props) {
 
     const [repos,setRepos] = useState([]);
   
+    const [sort,setSort] = useState('all');
 
-    useEffect(()=>{
+    // const [starredRepos,setStarredRepos] = useState([]);
+
+    // const [forkedRepos,setForkedRepos] = useState([]);
+
+    // const [sizeRepos,setSizeRepos] = useState([]);
+
+    // const [lastUpdatedRepos,setLastUpdatedRepos] = useState([]);
+
+
+    const returnRepos = ((sort) =>{
+
+        let tempArr = [];
 
         axios
         .get(`https://api.github.com/users/${props.username}/repos`)
         .then((response) => {
-            setRepos(response.data);
+           tempArr = response.data
+           sorter(tempArr,sort)
         })
     
         .catch((err) => {
@@ -108,19 +122,77 @@ function Repos(props) {
         });
 
 
+    })
+
+
+   const sorter = ((arr,sort)=>{
+
+    switch(sort) {
+        case 'stars':
+  
+
+          break;
+
+        case 'forks':
+      
+
+          break;
+
+        case 'size':
+  
+
+          break;
+
+        case 'date':
+      
+
+          break;
+
+        default:
+       
+      }
+
+
+
+
+   })
+
+
+
+    useEffect(()=>{
+       
+
     },[])
 
 
 
-      console.log(repos,"user")
 
   return (
 <>
 
 
-<Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "cornsilk"}}>
 
-            <p>Repos</p>
+<section className={classes.subSection}>
+
+<div className={classes.section}>
+
+<h3 style={{margin:"1%"}}>Top Repos</h3>
+</div>
+
+<div className={classes.section} style={{margin:"1%"}}>
+<Button onClick={()=> returnRepos('stars')} style={{margin:"1%"}} style={{margin:"1%"}} color="primary" variant="contained">Stars</Button>
+<Button onClick={()=> returnRepos('forks')} style={{margin:"1%"}} color="primary" variant="contained">Forks</Button>
+<Button onClick={()=> returnRepos('size')} style={{margin:"1%"}} color="primary" variant="contained">Size</Button>
+<Button onClick={()=> returnRepos('date')} style={{margin:"1%"}} color="primary" variant="contained">Date</Button>
+
+</div>
+
+
+
+</section>
+
+
   
 </Card>
 
