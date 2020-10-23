@@ -69,6 +69,7 @@ useEffect(()=>{
 },[githubUserName])
 
 
+console.log(user,"user")
 
   return (
 <>
