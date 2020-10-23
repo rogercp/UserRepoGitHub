@@ -59,12 +59,13 @@ function RepoCard(props) {
 
 
   return (
-    <Card className={classes.paper} style={{ backgroundColor:"mintcream",border: "black",  maxWidth: "95%",maxHeight:"200px",margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
+    <Card className={classes.paper} style={{ backgroundColor:"mintcream",border: "black",  maxWidth: "95%",maxHeight:"200px",margin:"10px"}}  >  
 
     <div className={classes.section}>
 
+    <p>{props.repo.name}</p>
+    
 
-  
     </div>
       
     </Card>

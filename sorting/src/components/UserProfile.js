@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
 import ProfileInfo from './ProfileInfo'
+import Repos from './Repos'
 import Following from './Following'
 import TopUserLanguages from './TopUserLanguages'
 import { makeStyles } from '@material-ui/core/styles';
@@ -69,7 +70,6 @@ useEffect(()=>{
 },[githubUserName])
 
 
-console.log(user,"user")
 
   return (
 <>
@@ -77,8 +77,10 @@ console.log(user,"user")
     
     <section className = {classes.profileImage}>
      <TopUserLanguages   languagesData={languagesData}  username={githubUserName} user={user}/>
- 
+     <Repos  username={githubUserName} user={user}/>
+
      </section>
+
 
     <section className = {classes.sectionLeft}>
 

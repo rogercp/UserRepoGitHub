@@ -6,7 +6,7 @@ import MyLocationIcon from '@material-ui/icons/MyLocation';
 import EventIcon from '@material-ui/icons/Event';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ApartmentIcon from '@material-ui/icons/Apartment';
-import FollowCard from './FollowCard'
+import RepoCard from './RepoCard'
 import axios from 'axios';
 import Switch from '@material-ui/core/Switch';
 
@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
 function Repos(props) {
     const classes = useStyles();
 
-    const [Repos,setRepos] = useState([]);
+    const [repos,setRepos] = useState([]);
   
 
     useEffect(()=>{
@@ -110,68 +110,35 @@ function Repos(props) {
 
     },[])
 
-    const handleChange = (event) => {
-        setToggleState({ ...toggleState, [event.target.name]: event.target.checked });
-      };
 
 
+      console.log(repos,"user")
 
   return (
 <>
-    <Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
-
-    <Switch 
-    checked={toggleState.toggle}
-    onChange={handleChange}
-    color="primary"
-    name="toggle"
-    inputProps={{ 'aria-label': 'primary checkbo' }} 
-    />
-    {toggleState.toggle === false ? 
-
-     <h2>Following</h2>
-    :
-     <h2>Followers</h2>
-    }
-    </Card>
 
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk" }}>  
+<Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
+
+            <p>Repos</p>
+  
+</Card>
+
+
+    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin: '1%',backgroundColor: "cornsilk" }}>  
     
-    {toggleState.toggle === false ? 
-        <>
-    {following.map((follow)=>{
+
+
+    {repos.map((repo)=>{
 
         return (
             <>
-            <FollowCard follow = {follow}/>
+            <RepoCard repo ={repo}/>
             </>
         )   
 
         })}
-        </>
-        :
-        <>
-        {followers.map((follow)=>{
-
-        return (
-            <>
-            <FollowCard follow = {follow}/>
-            </>
-        )
-
-    })}
-    </>
-    }
     
-
-
-    
-   
-   
-
-
-
 
 
 
