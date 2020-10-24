@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
 import ProfileInfo from './ProfileInfo'
+import CommitActivity from './CommitActivity'
 import Repos from './Repos'
 import Following from './Following'
 import TopUserLanguages from './TopUserLanguages'
@@ -45,6 +46,9 @@ const [user,setUser] = useState({})
 const [languagesData,setLanguagesData] = useState([])
 
 
+// https://api.github.com/users/tater/events
+
+
 console.log(user,"user")
 useEffect(()=>{
 
@@ -67,15 +71,19 @@ useEffect(()=>{
       setLanguagesData(stats);
     });
 
+  
 
 
 },[githubUserName])
 
 
-
   return (
 <>
     <div className={classes.main}>
+
+    <section className = {classes.profileImage}>
+      <CommitActivity  username={githubUserName} user={user} />
+      </section>
     
     <section className = {classes.profileImage}>
      <TopUserLanguages   languagesData={languagesData}  username={githubUserName} user={user}/>
