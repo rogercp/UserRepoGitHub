@@ -97,13 +97,6 @@ function Repos(props) {
   
     const [sort,setSort] = useState();
 
-    // const [starredRepos,setStarredRepos] = useState([]);
-
-    // const [forkedRepos,setForkedRepos] = useState([]);
-
-    // const [sizeRepos,setSizeRepos] = useState([]);
-
-    // const [lastUpdatedRepos,setLastUpdatedRepos] = useState([]);
 
 
     const returnRepos = ((sort) =>{
@@ -127,28 +120,20 @@ function Repos(props) {
 
     switch(sorter) {
         case 'stars':
-        console.log("hitting stars")
-        console.log(sort)
-            arr.sort((a, b) => {
-                return b.stargazers_count - a.stargazers_count;
+            let newArr = arr.filter((entry) => {
+                return entry.stargazers_count > 0;
             });
-            setRepos(arr)
-
+            setRepos(newArr)
           break;
 
         case 'forks':
-            console.log("hitting forks")
-            console.log(sort)
             arr.sort((a, b) => {
                 return b.forks - a.forks;
             });
             setRepos(arr)
-
           break;
 
         case 'size':
-            console.log("hitting size")
-            console.log(sort)
             arr.sort((a, b) => {
                 return b.size - a.size;
             });
@@ -156,17 +141,18 @@ function Repos(props) {
           break;
 
         case 'date':
-            console.log("hitting date")
-            console.log(sort)
+
+
             arr.sort((a, b) => {
-                return b.updated_at - a.updated_at;
+
+
+                return new Date(b.created_at) - new Date(a.created_at);
+
             });
             setRepos(arr)
           break;
 
         default:
-            console.log("hitting default")
-            console.log(sort)
             setRepos(arr)
 
        
@@ -181,11 +167,8 @@ function Repos(props) {
 
    const changeSort = ((sorter)=>{
 
-    console.log(sort,"sort")
 
         setSort(sorter)
-
-
 
    })
 

@@ -105,9 +105,9 @@ function RepoCard(props) {
     </section>
     <section className={classes.section}>
 
-    <h6>Last Updated:  </h6>
+    <h6>Created:  </h6>
 
-    <h6>{new Date(props.repo.updated_at).toLocaleDateString('en-US', {
+    <h6>{new Date(props.repo.created_at).toLocaleDateString('en-US', {
                 month: 'long',
                 day: 'numeric',
                 year: 'numeric',

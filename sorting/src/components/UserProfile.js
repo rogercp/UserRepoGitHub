@@ -44,6 +44,8 @@ let githubUserName = props.location.state.username;
 const [user,setUser] = useState({})
 const [languagesData,setLanguagesData] = useState([])
 
+
+console.log(user,"user")
 useEffect(()=>{
 
     axios
