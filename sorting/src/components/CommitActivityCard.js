@@ -1,11 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
-import MyLocationIcon from '@material-ui/icons/MyLocation';
-import EventIcon from '@material-ui/icons/Event';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import ApartmentIcon from '@material-ui/icons/Apartment';
+import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
+import NoteIcon from '@material-ui/icons/Note';
+ import AddBoxIcon from '@material-ui/icons/AddBox';
+import NewReleases from '@material-ui/icons/NewReleases';
 
 const useStyles = makeStyles(theme => ({
    
@@ -66,38 +65,126 @@ function CommitActivityCard(props) {
           case "PushEvent":   
           return (
 
-              <div style={{width:'100%',backgroundColor:"red"}}>
-              <p>HGEllo</p>
+              <div  onClick={event =>  window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row",alignItems:'left',justifyContent:'left'}}>
+              <section style={{width:"20%"}}>
+              <NoteIcon/>
+              </section>
+
+              <div style={{width:"60%",display:'flex',flexDirection:'column'}}>
+
+              <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+              <h4>Push to:</h4>
+              <h5>{props.feedie.repo.name}</h5>
+              </section>
+
+              <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+              <h4>Commit Message:</h4>
+              <h5> {props.feedie.payload.commits[0].message} </h5>
+              </section>
+              </div>
+             
+  
+
+
+  
+              <section style={{width:"20%"}}>
+         
+         <h6>{new Date(props.feedie.created_at).toLocaleDateString('en-US', {
+               month: 'long',
+               day: 'numeric',
+               year: 'numeric',
+             })}</h6>
+         </section>
             </div>
 
           );
           case "PullRequestEvent":   
           return (
-          <div style={{width:'100%',backgroundColor:"red"}}>
-          
+          <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
+          <section>
+          <ArrowDropDownCircleIcon/>
+          </section>
+          <section>
+          <h5>Pull Request from:</h5>
+          </section>
+          <section>
           <p>HGEllo</p>
+          </section>
+
+
+
+
+          <section style={{width:"20%"}}>
+         
+         <h6>{new Date(props.feedie.created_at).toLocaleDateString('en-US', {
+               month: 'long',
+               day: 'numeric',
+               year: 'numeric',
+             })}</h6>
+         </section>
             </div>
 
           );
           case "PullRequestReviewEvent ": 
           return(
-            <div style={{width:'100%',backgroundColor:"red"}}>
-            <p>HGEllo</p>
+          <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
+            <section>
+          <NewReleases/>
+          </section>
+          <section>
+          <h5>Pull Request Review:</h5>
+          </section>
+          <section>
+          <p>HGEllo</p>
+          </section>
+
+
+
+
+          <section style={{width:"20%"}}>
+         
+         <h6>{new Date(props.feedie.created_at).toLocaleDateString('en-US', {
+               month: 'long',
+               day: 'numeric',
+               year: 'numeric',
+             })}</h6>
+         </section>
             </div>
 
           );
           case "CreateEvent":  
           return (
-           <div style={{width:'100%',backgroundColor:"red"}}>
-           <p>HGEllo</p>
+           <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
+             <section>
+          <AddBoxIcon/>
+          </section>
+          <section>
+          <h5>Repo Created:</h5>
+          <p>{props.feedie.repo.name}</p>
+          </section>
+          <section>
+         <p>{props.feedie.payload.description}</p>
+          </section>
+
+
+
+
+          <section style={{width:"20%"}}>
+         
+         <h6>{new Date(props.feedie.created_at).toLocaleDateString('en-US', {
+               month: 'long',
+               day: 'numeric',
+               year: 'numeric',
+             })}</h6>
+         </section>
             </div>
 
           );
   
           default:      
           return (
-            <div style={{width:'100%',backgroundColor:"red"}}>
-             <p>HGEllo</p>
+            <div style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
+             
             </div>
 
 
@@ -112,12 +199,12 @@ function CommitActivityCard(props) {
   return (
 
   <>
-    <Card className={classes.paper} style={{ backgroundColor:"mintcream",  maxWidth: "95%",margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
+    {/* <Card className={classes.paper} style={{ backgroundColor:"mintcream", maxWidth: "95%",margin:"10px"}} >   */}
 
 
       { project() }
       
-    </Card>
+    {/* </Card> */}
 
    
 
