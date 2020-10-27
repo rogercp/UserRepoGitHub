@@ -14,32 +14,29 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
    
-    paper: {
-      height: '100%',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(0, 0, 0),
-      outline: 'none',
-      overflowY:'scroll',
-      margin: '1%',
-      display:"flex",
-      flexDirection:"row",
-      justifyContent: "center",
-      alignItems: "center",
-      boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
-      '&:hover': {
-        boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
-      },
-      [theme.breakpoints.down('md')]: {
-        width: '100%',
-        height: '100%',
-      },
-      [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(0, 0, 0),
-        width: '100%',
-        height: '100%',
-      },
+  paper: {
+    height: '100%',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(0, 0, 0),
+    outline: 'none',
+    display:"block",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
+    '&:hover': {
+      boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
     },
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      height: '100%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0, 0, 0),
+      width: '100%',
+      height: '100%',
+    },
+  },
 
     profileImage:{
 
@@ -127,10 +124,12 @@ console.log(feed,"feed")
 <>
 
 
-<Card className={classes.toggle} style={{width:"710px",backgroundColor:"white",margin:"10px",overflowY:"scroll",minHeight: "300px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} style={{ border: "black", maxWidth:"710px",height:"300px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk"}}>
 
   
-{feed.map((feedie)=>{
+  <div style={{display:'flex',flexDirection:"column",width:"100%"}}>
+
+  {feed.map((feedie)=>{
 
 return (
     <>
@@ -139,6 +138,9 @@ return (
 )   
 
 })}
+
+
+  </div>
 
 
   

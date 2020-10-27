@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
    
     paper: {
       height: '100%',
-      overflowY:'scroll',
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(0, 0, 0),
@@ -67,49 +66,41 @@ function CommitActivityCard(props) {
           case "PushEvent":   
           return (
 
-            <>
-              <div>
-            <h1>PullRequestEvent</h1>
+              <div style={{width:'100%',backgroundColor:"red"}}>
+              <p>HGEllo</p>
             </div>
 
-            </>
           );
           case "PullRequestEvent":   
           return (
-            <>
-            <div>
-            <h1>PullRequestEvent</h1>
+          <div style={{width:'100%',backgroundColor:"red"}}>
+          
+          <p>HGEllo</p>
             </div>
-            </>
 
           );
           case "PullRequestReviewEvent ": 
           return(
-          <>
-            <div>
-            <h1>PullRequestEvent</h1>
-            </div>>
+            <div style={{width:'100%',backgroundColor:"red"}}>
+            <p>HGEllo</p>
+            </div>
 
-            </>
           );
           case "CreateEvent":  
           return (
-          <>
-           <div>
-            <h1>PullRequestEvent</h1>
+           <div style={{width:'100%',backgroundColor:"red"}}>
+           <p>HGEllo</p>
             </div>
 
-            </>
           );
   
           default:      
           return (
-            <>
-            <div>
-            <h1>PullRequestEvent</h1>
+            <div style={{width:'100%',backgroundColor:"red"}}>
+             <p>HGEllo</p>
             </div>
 
-            </>
+
           )
         }
       }
@@ -121,11 +112,10 @@ function CommitActivityCard(props) {
   return (
 
   <>
-    <Card className={classes.paper} style={{ backgroundColor:"mintcream",  width: '400px',margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
+    <Card className={classes.paper} style={{ backgroundColor:"mintcream",  maxWidth: "95%",margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
 
 
-      <div style={{width:'100%'}}>{ project() }</div>
-
+      { project() }
       
     </Card>
 
