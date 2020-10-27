@@ -19,18 +19,24 @@ const useStyles = makeStyles(theme => ({
     main:{
 
         display:"flex",
-        flexDirection:"row",
+        flexDirection:"column",
         justifyContent:"center",
         alignItems:"center",
 
     },
-    sectionLeft:{
-       
+    middle:{
 
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
     },
-    sectionRight:{
 
-
+    middlerowright:{
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
     }
   
   
@@ -79,38 +85,70 @@ useEffect(()=>{
 
   return (
 <>
-    <div className={classes.main}>
-
-    <section className = {classes.profileImage}>
-      <CommitActivity  username={githubUserName} user={user} />
-      </section>
-    
-    <section className = {classes.profileImage}>
-     <TopUserLanguages   languagesData={languagesData}  username={githubUserName} user={user}/>
-     <Repos  username={githubUserName} user={user}/>
-
-     </section>
+  <div className={classes.main}>
 
 
-    <section className = {classes.sectionLeft}>
+    <div className={classes.middle}>
 
-    <ProfileImage username={githubUserName} user={user}/>
-   <ProfileInfo username={githubUserName} user={user} />
-    </section>
-    
-    <section className = {classes.sectionRight}>
 
-    <Following username={githubUserName} user={user} />
-        </section >
-    
+                <div className={classes.main}>
+                        <section> 
 
-    </div>
-     <section className = {classes.profileImage}>
-     <Contributions username={githubUserName} user={user}/>
+                            <TopUserLanguages username={githubUserName} user={user}  languagesData= {languagesData}/>
+                              <Repos  username={githubUserName} user={user}/>
+
+                        </section>
+                </div>
+
+
+
+                <div>
+
+                      <section>
+                        <CommitActivity  username={githubUserName} user={user} />
+                        </section>
+
+                      <div className = {classes.middlerowright}>
+                      <section>
+                            <ProfileImage username={githubUserName} user={user}/>
+                            <ProfileInfo username={githubUserName} user={user} />
+                        </section>
+
+
+                        <section>
+                            <Following username={githubUserName} user={user} />
+                        </section >
+
+                      </div>
+                       
+
+                </div>
+                
+
+
+      
+      </div>
+
+
+
+
+
+      <div classes = {classes.bottom}>
+            <section className = {classes.profileImage}>
+              <Contributions username={githubUserName} user={user}/>
+            </section>
+      </div>
+
+
+
+
+
  
-     </section>
+  </div>
+   
 
-    
+
+
      
 </>
   );

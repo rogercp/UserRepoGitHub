@@ -20,8 +20,10 @@ const useStyles = makeStyles(theme => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing(0, 0, 0),
       outline: 'none',
+      overflowY:'scroll',
       margin: '1%',
-      display:"block",
+      display:"flex",
+      flexDirection:"row",
       justifyContent: "center",
       alignItems: "center",
       boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
@@ -125,7 +127,7 @@ console.log(feed,"feed")
 <>
 
 
-<Card className={classes.toggle} style={{width:"700px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} style={{width:"710px",backgroundColor:"white",margin:"10px",overflowY:"scroll",minHeight: "300px",backgroundColor: "cornsilk"}}>
 
   
 {feed.map((feedie)=>{

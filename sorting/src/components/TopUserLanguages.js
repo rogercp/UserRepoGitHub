@@ -31,11 +31,12 @@ const useStyles = makeStyles(theme => ({
         },
       },
   
-    section:{
-      display: "flex",
-       width: "100%", 
-       height: "100%",
-    }
+      section:{
+
+
+        margin:'12px'
+      }
+
   
   }))
 

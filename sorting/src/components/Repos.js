@@ -38,13 +38,6 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
       },
     },
-
-    profileImage:{
-
-        width:'50%',
-        height:'50%',
-        margin: "5px auto"
-    },
   
     subSection:{
 
@@ -68,7 +61,6 @@ const useStyles = makeStyles(theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(0, 0, 0),
         outline: 'none',
-        margin: '1%',
         display:"flex",
         justifyContent: "space-around",
         alignItems: "center",
@@ -211,7 +203,7 @@ function Repos(props) {
 </Card>
 
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin: '1%',backgroundColor: "cornsilk" }}>  
+    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"450px",overflowY:"scroll",margin: '5px',backgroundColor: "cornsilk" }}>  
     
 
 

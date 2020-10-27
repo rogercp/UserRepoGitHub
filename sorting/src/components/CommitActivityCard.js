@@ -11,12 +11,14 @@ const useStyles = makeStyles(theme => ({
    
     paper: {
       height: '100%',
+      overflowY:'scroll',
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(0, 0, 0),
       outline: 'none',
       margin: '1%',
-      display:"block",
+      display:"flex",
+      flexDirection:'column',
       justifyContent: "center",
       alignItems: "center",
       boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
@@ -57,18 +59,80 @@ function CommitActivityCard(props) {
     
     const classes = useStyles();
 
+  
+      const project = () => {
+        console.log(props.feedie.type,"type")
+
+        switch(props.feedie.type) {
+          case "PushEvent":   
+          return (
+
+            <>
+              <div>
+            <h1>PullRequestEvent</h1>
+            </div>
+
+            </>
+          );
+          case "PullRequestEvent":   
+          return (
+            <>
+            <div>
+            <h1>PullRequestEvent</h1>
+            </div>
+            </>
+
+          );
+          case "PullRequestReviewEvent ": 
+          return(
+          <>
+            <div>
+            <h1>PullRequestEvent</h1>
+            </div>>
+
+            </>
+          );
+          case "CreateEvent":  
+          return (
+          <>
+           <div>
+            <h1>PullRequestEvent</h1>
+            </div>
+
+            </>
+          );
+  
+          default:      
+          return (
+            <>
+            <div>
+            <h1>PullRequestEvent</h1>
+            </div>
+
+            </>
+          )
+        }
+      }
+
+    
+
 
 
   return (
-    <Card className={classes.paper} style={{ backgroundColor:"mintcream",border: "black",  maxWidth: "95%",maxHeight:"200px",margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
 
-    <div className={classes.section}>
+  <>
+    <Card className={classes.paper} style={{ backgroundColor:"mintcream",  width: '400px',margin:"10px"}}  onClick={event =>  window.location.href=`${props.follow.html_url}`}>  
 
 
-    </div>
+      <div style={{width:'100%'}}>{ project() }</div>
+
       
     </Card>
 
+   
+
+
+  </>
   );
 }
 
