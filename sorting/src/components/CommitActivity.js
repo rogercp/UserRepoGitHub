@@ -133,7 +133,7 @@ console.log(feed,"feed")
 
 return (
     <>
-    <CommitActivityCard feedie ={feedie}/>
+    <CommitActivityCard feedie={feedie}/>
     </>
 )   
 

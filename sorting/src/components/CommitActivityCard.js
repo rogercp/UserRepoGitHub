@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
   
   }))
 
+  let count = 0;
 
 function CommitActivityCard(props) {
     
@@ -59,27 +60,30 @@ function CommitActivityCard(props) {
 
   
       const project = () => {
-        console.log(props.feedie.type,"type")
+
+          count++;
+          console.log(count,"count")
 
         switch(props.feedie.type) {
           case "PushEvent":   
           return (
 
-              <div  onClick={event =>  window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row",alignItems:'left',justifyContent:'left'}}>
+              <>
+              <div  onClick={event =>  window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row"}}>
               <section style={{width:"20%"}}>
               <NoteIcon/>
               </section>
 
-              <div style={{width:"60%",display:'flex',flexDirection:'column'}}>
+              <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
 
               <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-              <h4>Push to:</h4>
-              <h5>{props.feedie.repo.name}</h5>
+              <h4>Push to: </h4>
+              <p>{props.feedie.repo.name}</p>
               </section>
 
               <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-              <h4>Commit Message:</h4>
-              <h5> {props.feedie.payload.commits[0].message} </h5>
+              <h4>Commit Message: </h4>
+              <p> {props.feedie.payload.commits[0].message} </p>
               </section>
               </div>
              
@@ -95,23 +99,33 @@ function CommitActivityCard(props) {
                year: 'numeric',
              })}</h6>
          </section>
-            </div>
 
+       
+
+            </div>
+              <hr style={{width:"100%"}}></hr>
+
+              </>
+             
           );
           case "PullRequestEvent":   
           return (
-          <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
+            <>
+          <div onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row"}}>
           <section>
           <ArrowDropDownCircleIcon/>
           </section>
-          <section>
-          <h5>Pull Request from:</h5>
+
+          <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+          <h4>Pull Request from:</h4>
           </section>
-          <section>
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
           <p>HGEllo</p>
           </section>
 
 
+          </div>
 
 
           <section style={{width:"20%"}}>
@@ -124,20 +138,28 @@ function CommitActivityCard(props) {
          </section>
             </div>
 
+<hr style={{width:"100%"}}></hr>
+
+</>
           );
           case "PullRequestReviewEvent ": 
           return(
-          <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
-            <section>
+            <>
+          <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`}  style={{width:'100%',display:'flex',flexDirection:"row"}}>
+            <section style={{width:"20%"}}>
           <NewReleases/>
           </section>
-          <section>
-          <h5>Pull Request Review:</h5>
+
+          <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
+
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+          <h4>Pull Request Review:</h4>
           </section>
-          <section>
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
           <p>HGEllo</p>
           </section>
 
+          </div>
 
 
 
@@ -151,22 +173,29 @@ function CommitActivityCard(props) {
          </section>
             </div>
 
+            <hr style={{width:"100%"}}></hr>
+
+          </>
           );
           case "CreateEvent":  
           return (
-           <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row",margin:"4%"}}>
-             <section>
+            <>
+           <div  onClick={event => window.location.href=`${props.feedie.payload.commits[0].url}`} style={{width:'100%',display:'flex',flexDirection:"row",alignItems:'left',justifyContent:'left'}}>
+             <section style={{width:"20%"}}>
           <AddBoxIcon/>
           </section>
-          <section>
-          <h5>Repo Created:</h5>
+          <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
+
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+          <h4>Repo Created:</h4>
           <p>{props.feedie.repo.name}</p>
           </section>
-          <section>
+          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
+          <h4>Description:</h4>
          <p>{props.feedie.payload.description}</p>
           </section>
 
-
+          </div>
 
 
           <section style={{width:"20%"}}>
@@ -179,6 +208,9 @@ function CommitActivityCard(props) {
          </section>
             </div>
 
+            <hr style={{width:"100%"}}></hr>
+
+            </>
           );
   
           default:      
@@ -203,8 +235,8 @@ function CommitActivityCard(props) {
 
 
       { project() }
-      
-    {/* </Card> */}
+{/*       
+    </Card> */}
 
    
 
