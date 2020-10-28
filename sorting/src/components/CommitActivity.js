@@ -62,15 +62,10 @@ const useStyles = makeStyles(theme => ({
     },
 
     toggle:{
-        height: '100%',
+         margin:'3%',
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(0, 0, 0),
-        outline: 'none',
-        margin: '1%',
-        display:"flex",
-        justifyContent: "space-around",
-        alignItems: "center",
         boxShadow: "0 16px 19px rgba(0,0,0,0.2), 0 15px 15px rgba(0,0,0,0.2)",
         '&:hover': {
           boxShadow: "0 2px 4px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22)"
@@ -101,6 +96,7 @@ function CommitActivity(props) {
         .get(`https://api.github.com/users/${props.username}/events/public`)
         .then((response) => {
             setFeed(response.data);
+            
         })
 
         .catch((err) => {
@@ -118,7 +114,7 @@ function CommitActivity(props) {
     },[])
 
 
-console.log(feed,"feed")
+    console.log(feed,"feed")
 
   return (
 <>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
@@ -52,17 +52,19 @@ const useStyles = makeStyles(theme => ({
   
   }))
 
-  let count = 0;
 
 function CommitActivityCard(props) {
     
     const classes = useStyles();
 
-  
+  useEffect(()=>{
+
+
+    
+  })
       const project = () => {
 
-          count++;
-          console.log(count,"count")
+          console.log(props.feedie.type,"count")
 
         switch(props.feedie.type) {
           case "PushEvent":   
