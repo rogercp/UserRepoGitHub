@@ -2,8 +2,6 @@ import React, {useEffect} from 'react';
 import './App.css';
 import UserLogin from './components/UserLogin';
 import UserProfile from './components/UserProfile';
-import Bubble from './components/Bubble';
-
 import { Route, Switch } from 'react-router-dom';
 import {gsap} from 'gsap';
 

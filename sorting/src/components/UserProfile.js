@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import Contributions from './Contributions'
 import ProfileImage from './ProfileImage'
 import ProfileInfo from './ProfileInfo'
@@ -9,8 +9,7 @@ import TopUserLanguages from './TopUserLanguages'
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import GhPolyglot from 'gh-polyglot';
-
-
+import {gsap} from 'gsap';
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,6 +46,12 @@ const useStyles = makeStyles(theme => ({
 function UserProfile(props) {
     const classes = useStyles();
 
+    let topUserLangRef = useRef(null)
+
+    let contributionRef = useRef(null)
+
+    let activity = useRef(null)
+
 let githubUserName = props.location.state.username;
 const [user,setUser] = useState({})
 const [languagesData,setLanguagesData] = useState([])
@@ -77,7 +82,30 @@ useEffect(()=>{
       setLanguagesData(stats);
     });
 
-  
+    gsap.from(topUserLangRef.current, {
+      autoAlpha: 0,
+      ease: 'none',
+      y:-600,
+      x:600,
+      delay: 1
+  });
+
+  gsap.from(contributionRef.current, {
+    autoAlpha: 0,
+    ease: 'none',
+    y:600,
+    delay: 1
+});
+
+  gsap.from(activity.current, {
+    autoAlpha: 0,
+    ease: 'none',
+    y:-600,
+    x:-600,
+    delay: 1
+  });
+
+
 
 
 },[githubUserName])
@@ -92,10 +120,20 @@ useEffect(()=>{
 
 
                 <div className={classes.main}>
-                        <section> 
+                        <section  > 
 
-                            <TopUserLanguages username={githubUserName} user={user}  languagesData= {languagesData}/>
-                              <Repos  username={githubUserName} user={user}/>
+                              <div ref={topUserLangRef}>
+
+                              <TopUserLanguages  username={githubUserName} user={user}  languagesData= {languagesData}/>
+
+                              </div>
+
+
+                            <div >
+
+                            <Repos  username={githubUserName} user={user}/>
+                              
+                            </div>
 
                         </section>
                 </div>
@@ -105,7 +143,10 @@ useEffect(()=>{
                 <div>
 
                       <section>
+                        <div ref={activity}>
                         <CommitActivity  username={githubUserName} user={user} />
+
+                          </div>
                         </section>
 
                       <div className = {classes.middlerowright}>
@@ -134,7 +175,7 @@ useEffect(()=>{
 
 
       <div classes = {classes.bottom}>
-            <section className = {classes.profileImage}>
+            <section   ref={contributionRef} className = {classes.profileImage}>
               <Contributions username={githubUserName} user={user}/>
             </section>
       </div>

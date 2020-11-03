@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,7 +9,7 @@ import ApartmentIcon from '@material-ui/icons/Apartment';
 import FollowCard from './FollowCard'
 import axios from 'axios';
 import Switch from '@material-ui/core/Switch';
-
+import {gsap} from 'gsap';
 
 const useStyles = makeStyles(theme => ({
    
@@ -91,6 +91,12 @@ const useStyles = makeStyles(theme => ({
 function Following(props) {
     const classes = useStyles();
 
+
+    let followNavRef = useRef(null)
+
+    let followRef = useRef(null);
+
+
     const [following,setFollowing] = useState([])
     const [followers,setFollowers] = useState([])
     const [toggleState,setToggleState] = useState({
@@ -122,6 +128,27 @@ function Following(props) {
           console.log(err);
         });
 
+
+        gsap.from(followNavRef.current, {
+          autoAlpha: 0,
+          ease: 'none',
+          x:-600,
+          delay: 1
+      });
+    
+      gsap.from(followRef.current, {
+        autoAlpha: 0,
+        ease: 'none',
+        x:600,
+        delay: 1
+    });
+
+
+
+
+
+
+
     },[])
 
     const handleChange = (event) => {
@@ -132,7 +159,7 @@ function Following(props) {
 
   return (
 <>
-    <Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
+    <Card className={classes.toggle} ref={followNavRef}  style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"50px",backgroundColor: "cornsilk"}}>
 
     <Switch 
     checked={toggleState.toggle}
@@ -150,7 +177,7 @@ function Following(props) {
     </Card>
 
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk" }}>  
+    <Card className={classes.paper} ref={followRef} style={{ border: "black", maxWidth:"350px",maxHeight:"500px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk" }}>  
     
     {toggleState.toggle === false ? 
         <>

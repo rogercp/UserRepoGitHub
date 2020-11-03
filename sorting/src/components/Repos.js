@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
@@ -10,6 +10,7 @@ import RepoCard from './RepoCard'
 import axios from 'axios';
 import Switch from '@material-ui/core/Switch';
 import Button from "@material-ui/core/Button";
+import {gsap} from 'gsap';
 
 
 const useStyles = makeStyles(theme => ({
@@ -84,6 +85,9 @@ const useStyles = makeStyles(theme => ({
 
 function Repos(props) {
     const classes = useStyles();
+
+    let  sortref= useRef(null)
+    let reposRef = useRef(null)
 
     const [repos,setRepos] = useState([]);
   
@@ -166,7 +170,23 @@ function Repos(props) {
 
     useEffect(()=>{
        
+
+
     returnRepos(sort)
+
+    gsap.from(sortref.current, {
+      autoAlpha: 0,
+      ease: 'none',
+      x:600,
+      delay: 1
+  });
+
+  gsap.from(reposRef.current, {
+    autoAlpha: 0,
+    ease: 'none',
+    x:-600,
+    delay: 1
+});
 
     },[sort])
 
@@ -177,7 +197,7 @@ function Repos(props) {
 <>
 
 
-<Card className={classes.toggle} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} ref={sortref} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "cornsilk"}}>
 
 <section className={classes.subSection}>
 
@@ -203,7 +223,7 @@ function Repos(props) {
 </Card>
 
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"450px",overflowY:"scroll",margin: '5px',backgroundColor: "cornsilk" }}>  
+    <Card ref={reposRef}  className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"450px",overflowY:"scroll",margin: '5px',backgroundColor: "cornsilk" }}>  
     
 
 
