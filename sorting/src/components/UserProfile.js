@@ -52,6 +52,10 @@ function UserProfile(props) {
 
     let activity = useRef(null)
 
+    let profImage = useRef(null)
+
+    let profInfo = useRef(null)
+
 let githubUserName = props.location.state.username;
 const [user,setUser] = useState({})
 const [languagesData,setLanguagesData] = useState([])
@@ -105,6 +109,19 @@ useEffect(()=>{
     delay: 1
   });
 
+  gsap.from(profImage.current, {
+    autoAlpha: 0,
+    ease: 'none',
+    y:600,
+    delay: 1
+  });
+
+  gsap.from(profInfo.current, {
+    autoAlpha: 0,
+    ease: 'none',
+    y:-600,
+    delay: 1
+  });
 
 
 
@@ -151,8 +168,16 @@ useEffect(()=>{
 
                       <div className = {classes.middlerowright}>
                       <section>
-                            <ProfileImage username={githubUserName} user={user}/>
-                            <ProfileInfo username={githubUserName} user={user} />
+                          <div ref={profImage}>
+                          <ProfileImage username={githubUserName} user={user}/>
+
+                          </div>
+
+                          <div ref={profInfo}>
+                          <ProfileInfo username={githubUserName} user={user} />
+
+                            </div>
+
                         </section>
 
 
