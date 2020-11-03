@@ -7,7 +7,7 @@ import '../App.css';
 const useStyles = makeStyles(theme => ({
     paper: {
         height: '100%',
-        backgroundColor: "cornsilk",
+        backgroundColor: "#f2e2ba",
          boxShadow: theme.shadows[5],
         padding: theme.spacing(0, 0, 0),
         outline: 'none',

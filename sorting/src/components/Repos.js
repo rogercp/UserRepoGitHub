@@ -197,7 +197,7 @@ function Repos(props) {
 <>
 
 
-<Card className={classes.toggle} ref={sortref} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} ref={sortref} style={{maxWidth:"350px",backgroundColor:"white",margin:"5px",maxHeight:"100px",backgroundColor: "#f2e2ba"}}>
 
 <section className={classes.subSection}>
 
@@ -223,7 +223,7 @@ function Repos(props) {
 </Card>
 
 
-    <Card ref={reposRef}  className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"450px",overflowY:"scroll",margin: '5px',backgroundColor: "cornsilk" }}>  
+    <Card ref={reposRef}  className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"450px",overflowY:"scroll",margin: '5px',backgroundColor: "#f2e2ba" }}>  
     
 
 

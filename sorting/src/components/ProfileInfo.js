@@ -96,7 +96,7 @@ function ProfileInfo(props) {
 
   return (
 
-    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"250px",margin:"5px",backgroundColor: "cornsilk" }}>  
+    <Card className={classes.paper} style={{ border: "black", maxWidth:"350px",maxHeight:"250px",margin:"5px",backgroundColor: "#f2e2ba" }}>  
 
 
     {/* <div className={classes.section}>

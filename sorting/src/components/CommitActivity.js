@@ -120,7 +120,7 @@ function CommitActivity(props) {
 <>
 
 
-<Card className={classes.toggle} style={{ border: "black", maxWidth:"710px",height:"300px",overflowY:"scroll",margin:"5px",backgroundColor: "cornsilk"}}>
+<Card className={classes.toggle} style={{ border: "black", maxWidth:"710px",height:"300px",overflowY:"scroll",margin:"5px",backgroundColor: "#f2e2ba"}}>
 
   
   <div style={{display:'flex',flexDirection:"column",width:"100%"}}>

@@ -59,7 +59,7 @@ function ProfileImage(props) {
 
   return (
 
-    <Card onClick={event =>  window.location.href=`${props.user.html_url}`} className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px",margin:"5px", backgroundColor: "cornsilk"}}>  
+    <Card onClick={event =>  window.location.href=`${props.user.html_url}`} className={classes.paper} style={{ border: "black", minWidth: "350px", minHeight: "350px", maxWidth: "350px",maxHeight:"350px",margin:"5px", backgroundColor: "#f2e2ba"}}>  
 
 
     <div className={classes.section}>
