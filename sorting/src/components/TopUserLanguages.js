@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 0, 0),
         outline: 'none',
         borderRadius: '50%',
-        margin: '1%',
+        margin: '1px',
         display:"block",
         justifyContent: "center",
         alignItems: "center",
@@ -33,8 +33,9 @@ const useStyles = makeStyles(theme => ({
   
       section:{
 
+        margin:'9px'
 
-        margin:'12px'
+        
       }
 
   
