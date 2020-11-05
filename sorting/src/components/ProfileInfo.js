@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 import EventIcon from '@material-ui/icons/Event';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import ApartmentIcon from '@material-ui/icons/Apartment';
 import '../App.css';
 
 const useStyles = makeStyles(theme => ({
