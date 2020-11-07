@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect}from 'react';
 import GitHubCalendar from 'github-calendar';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -44,19 +44,28 @@ function Contributions(props) {
 
     const classes = useStyles();
 
-    GitHubCalendar('.calendar', props.username, {
+    console.log(props.username, "username in contributions calaneera")
+
+
+    useEffect(()=>{
+
+      GitHubCalendar('.calendar', props.username, {
         responsive: true,
         summary_text: ' ',
         tooltips: true,
       });
 
 
+    })
+    
+  
+
 
   return (
 
   <Card className={classes.paper}>  
 
-        <div className='calendar' style={{width:"100%"}}></div>
+        <div className='calendar' alt='Calendar Icon' style={{width:"100%"}}></div>
 
   </Card>
 

@@ -61,7 +61,6 @@ const [user,setUser] = useState({})
 const [languagesData,setLanguagesData] = useState([])
 
 
-// https://api.github.com/users/tater/events
 
 
 console.log(user,"user")
@@ -133,6 +132,7 @@ useEffect(()=>{
   <div className={classes.main}>
 
 
+
     <div className={classes.middle}>
 
 
@@ -195,24 +195,13 @@ useEffect(()=>{
       
       </div>
 
-
-
-
-
-      <div classes = {classes.bottom}>
-            <section   ref={contributionRef} className = {classes.profileImage}>
-              <Contributions username={githubUserName} user={user}/>
-            </section>
-      </div>
-
-
-
-
-
+     
+              <Contributions  ref={contributionRef} username={githubUserName} user={user} />
+  
  
   </div>
    
-
+  
 
 
      

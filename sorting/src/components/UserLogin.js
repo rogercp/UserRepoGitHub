@@ -99,7 +99,7 @@ function UserLogin(props) {
         <h1 >
         Enter GitHub UserName
         </h1>
-        <p>ex: rogercp </p>
+        <h6>example: rogercp </h6>
 
 
 <FormControl className={classes.formControl} noValidate autoComplete="off" onSubmit={onSubmitHandler}>
@@ -109,10 +109,9 @@ function UserLogin(props) {
         id="standard-basic"
         name="username"
         className={classes.textField}
-        label="Year"
+        label="username"
         margin="normal"
         value={state.username}
-        name="car_make"
         onChange={handleChange('username')}
       />
 
