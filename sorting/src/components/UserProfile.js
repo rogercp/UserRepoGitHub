@@ -195,8 +195,9 @@ useEffect(()=>{
       
       </div>
 
-     
-              <Contributions  ref={contributionRef} username={githubUserName} user={user} />
+
+            <Contributions  ref={contributionRef} username={githubUserName} user={user} />
+
   
  
   </div>
