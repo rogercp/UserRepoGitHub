@@ -10,34 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import GhPolyglot from 'gh-polyglot';
 import {gsap} from 'gsap';
+import '../App.css';
 
 
 const useStyles = makeStyles(theme => ({
    
 
-    main:{
-
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
-
-    },
-    middle:{
-
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"center",
-      alignItems:"center",
-    },
-
-    middlerowright:{
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"center",
-      alignItems:"center",
-    }
-  
   
   }))
 
@@ -129,14 +107,14 @@ useEffect(()=>{
 
   return (
 <>
-  <div className={classes.main}>
+  <div className="main">
 
 
 
-    <div className={classes.middle}>
+    <div className="middle">
 
 
-                <div className={classes.main}>
+                <div className="main">
                         <section  > 
 
                               <div ref={topUserLangRef}>
@@ -166,7 +144,7 @@ useEffect(()=>{
                           </div>
                         </section>
 
-                      <div className = {classes.middlerowright}>
+                      <div className = "middlerowright">
                       <section>
                           <div ref={profImage}>
                           <ProfileImage username={githubUserName} user={user}/>

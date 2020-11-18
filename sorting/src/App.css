@@ -252,3 +252,54 @@ h2.f4.text-normal.mb-3 {
     border-top-color: rgba(0,0,0,.85)
 }
 
+
+.main{
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+}
+.middle{
+
+display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+}
+
+.middlerowright{
+display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+}
+
+@media only screen and (max-width: 700px) {
+
+  .main{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  
+  }
+  .middle{
+  
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  }
+  
+  .middlerowright{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  }
+
+
+}
