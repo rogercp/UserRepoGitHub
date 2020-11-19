@@ -119,10 +119,7 @@ function CommitActivityCard(props) {
 
           <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
           <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-          <h4>Pull Request from:</h4>
-          </section>
-          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-          <p>HGEllo</p>
+          
           </section>
 
 
@@ -154,10 +151,7 @@ function CommitActivityCard(props) {
           <div style={{width:"60%",display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:"flex-start"}}>
 
           <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-          <h4>Pull Request Review:</h4>
-          </section>
-          <section style={{display:'flex',flexDirection:'row',alignItems:"center",justifyContent:'center'}}>
-          <p>HGEllo</p>
+         
           </section>
 
           </div>
